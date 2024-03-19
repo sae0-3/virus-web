@@ -1,0 +1,42 @@
+.forum-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.forum-info {
+  display: none;
+}
+
+@media screen and (min-width: 900px) {
+  .forum-info {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .forum-info_tema {
+    flex: 6;
+    font-size: 2rem;
+  }
+
+  .forum-info_space {
+    flex: 4;
+  }
+
+  .forum-info_data {
+    display: flex;
+    flex: 6;
+    justify-content: space-around;
+  }
+
+  .forum-info_data h4 {
+    align-items: center;
+    display: flex;
+  }
+
+  .forum-info_data i {
+    font-size: 2.8rem;
+    cursor: pointer;
+  }
+}
