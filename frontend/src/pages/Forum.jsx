@@ -1,27 +1,47 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ForumCard } from '../components/ForumCard'
 import '../styles/Forum.css'
-import userIcon from '../assets/user_.svg'
 
 
 export const Forum = () => {
+  const [data, setData] = useState(null);
   const [orderComments, setOrderComments] = useState('down')
   const [orderViews, setOrderViews] = useState('down')
   const [orderModified, setOrderModified] = useState('down')
 
   const handleOrderComment = () => {
-    const tmp = (orderComments === 'down') ? 'up' : 'down';
+    const tmp = (orderComments == 'down') ? 'up' : 'down';
     setOrderComments(tmp)
   }
 
   const handleOrderViews = () => {
-    const tmp = (orderViews === 'down') ? 'up' : 'down';
+    const tmp = (orderViews == 'down') ? 'up' : 'down';
     setOrderViews(tmp)
   }
+
   const handleOrderModified = () => {
-    const tmp = (orderModified === 'down') ? 'up' : 'down';
+    const tmp = (orderModified == 'down') ? 'up' : 'down';
     setOrderModified(tmp)
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/temas_card')
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+
+        const jsonData = await response.json()
+        setData(jsonData)
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }
+
+    fetchData();
+  }, [])
 
   return (
     <section style={{ width: '100%' }}>
@@ -33,118 +53,39 @@ export const Forum = () => {
           <section className='forum-info_space'></section>
           <section className='forum-info_data'>
             <h4 className='forum-info_data_1'>
-              Respuestas 
-              <i className={'bi bi-chevron-double-'+orderComments} onClick={ handleOrderComment }></i></h4>
+              Respuestas
+              <i className={`bi bi-chevron-double-${orderComments}`}
+                onClick={handleOrderComment}>
+              </i>
+            </h4>
             <h4 className='forum-info_data_2'>
-              Vistas 
-              <i className={'bi bi-chevron-double-'+orderViews} onClick={ handleOrderViews }></i></h4>
+              Vistas
+              <i className={`bi bi-chevron-double-${orderViews}`}
+                onClick={handleOrderViews}>
+              </i>
+            </h4>
             <h4 className='forum-info_data_3'>
-              Ultima Modificaión 
-              <i className={'bi bi-chevron-double-'+orderModified} onClick={ handleOrderModified }></i></h4>
+              Ultima Modificaión
+              <i className={`bi bi-chevron-double-${orderModified}`}
+                onClick={handleOrderModified}>
+              </i>
+            </h4>
           </section>
         </section>
 
-        <ForumCard
-          title={'Lorem ipsum dolor sit, amet consectetur adipisicing.'}
-          participants={[{ id: 3, name: 'userOne', profile: userIcon }]}
-        />
-
-        <ForumCard
-          title={'Lorem ipsum dolor sit, amet consectetur adipisicing.'}
-          participants={[{ id: 3, name: 'userOne', profile: userIcon }]}
-          active={false}
-        />
-
-        <ForumCard
-          title={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, obcaecati quibusdam! Unde, id!'}
-          participants={[{ id: 1, name: 'userOne', profile: userIcon },
-          { id: 2, name: 'userTwo', profile: userIcon },
-          { id: 3, name: 'userTwo', profile: userIcon },
-          { id: 4, name: 'userTwo', profile: userIcon },
-          { id: 5, name: 'userTwo', profile: userIcon },
-          { id: 6, name: 'userTwo', profile: userIcon },
-          { id: 7, name: 'userTwo', profile: userIcon },
-          { id: 8, name: 'userTwo', profile: userIcon },
-          { id: 9, name: 'userTwo', profile: userIcon },
-          { id: 10, name: 'userTwo', profile: userIcon }]}
-        />
-
-        <ForumCard
-          title={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, obcaecati quibusdam! Unde, id!'}
-          participants={[{ id: 1, name: 'userOne', profile: userIcon },
-          { id: 2, name: 'userTwo', profile: userIcon },
-          { id: 3, name: 'userTwo', profile: userIcon },
-          { id: 4, name: 'userTwo', profile: userIcon },
-          { id: 5, name: 'userTwo', profile: userIcon },
-          { id: 9, name: 'userTwo', profile: userIcon },
-          { id: 10, name: 'userTwo', profile: userIcon }]}
-        />
-
-        <ForumCard
-          title={'Lorem ipsum dolor sit, amet consectetur adipisicing.'}
-          participants={[{ id: 3, name: 'userOne', profile: userIcon }]}
-          active={false}
-        />
-
-        <ForumCard
-          title={'Lorem ipsum dolor sit, amet consectetur adipisicing.'}
-          participants={[{ id: 3, name: 'userOne', profile: userIcon }]}
-        />
-
-        <ForumCard
-          title={'Lorem ipsum dolor sit, amet consectetur adipisicing.'}
-          participants={[{ id: 3, name: 'userOne', profile: userIcon }]}
-          active={false}
-        />
-
-        <ForumCard
-          title={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, obcaecati quibusdam! Unde, id!'}
-          participants={[{ id: 1, name: 'userOne', profile: userIcon },
-          { id: 10, name: 'userTwo', profile: userIcon }]}
-        />
-
-        <ForumCard
-          title={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, obcaecati quibusdam! Unde, id!'}
-          participants={[{ id: 1, name: 'userOne', profile: userIcon },
-          { id: 2, name: 'userTwo', profile: userIcon },
-          { id: 3, name: 'userTwo', profile: userIcon },
-          { id: 10, name: 'userTwo', profile: userIcon }]}
-        />
-
-        <ForumCard
-          title={'Lorem ipsum dolor sit, amet consectetur adipisicing.'}
-          participants={[{ id: 3, name: 'userOne', profile: userIcon }]}
-          active={false}
-        />
-
-        <ForumCard
-          title={'Lorem ipsum dolor sit, amet consectetur adipisicing.'}
-          participants={[{ id: 3, name: 'userOne', profile: userIcon }]}
-        />
-
-        <ForumCard
-          title={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, obcaecati quibusdam! Unde, id!'}
-          participants={[
-          { id: 6, name: 'userTwo', profile: userIcon },
-          { id: 9, name: 'userTwo', profile: userIcon },
-          { id: 10, name: 'userTwo', profile: userIcon }]}
-        />
-
-        <ForumCard
-          title={'Lorem ipsum dolor sit, amet consectetur adipisicing.'}
-          participants={[{ id: 3, name: 'userOne', profile: userIcon }]}
-          active={false}
-        />
-
-        <ForumCard
-          title={'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, obcaecati quibusdam! Unde, id!'}
-          participants={[{ id: 1, name: 'userOne', profile: userIcon },
-          { id: 2, name: 'userTwo', profile: userIcon },
-          { id: 3, name: 'userTwo', profile: userIcon },
-          { id: 4, name: 'userTwo', profile: userIcon },
-          { id: 10, name: 'userTwo', profile: userIcon }]}
-        />
-
+        {data && data.map(({ id, comments, views, last_modification,
+          participants, status, title }) =>
+            <ForumCard
+              key={id}
+              id={id}
+              title={title}
+              participants={participants}
+              totalResponses={comments}
+              totalViews={views}
+              modifiedLatest={last_modification}
+              active={status}
+            />
+        )}
       </div>
     </section>
   )

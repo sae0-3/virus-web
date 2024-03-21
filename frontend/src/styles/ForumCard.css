@@ -24,7 +24,9 @@
 }
 
 .f-c-c_profiles img {
-  width: 3.2rem;
+  border-radius: .8rem;
+  height: 4rem;
+  width: 4rem;
 }
 
 .f-c-c_data {
@@ -65,7 +67,8 @@
   }
 
   .f-c-c_profiles img {
-    width: 2.8rem;
+    height: 3.2rem;
+    width: 3.2rem;
   }
 
   .f-c-c_data {
