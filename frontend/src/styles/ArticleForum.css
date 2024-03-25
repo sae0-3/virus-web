@@ -1,0 +1,89 @@
+.articleForum .card-title, .articleForum-data p {
+  margin-bottom: 0;
+}
+
+.articleForum-data {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.articleForum-data p {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.articleForum-data p span {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.articleForum-participants {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  justify-content: center;
+}
+
+.articleForum-participants img {
+  border-radius: 50%;
+  background-color: var(--white);
+  height: 4.4rem;
+  padding: .4rem;
+  width: 4.4rem;
+}
+
+.articleForum .card-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.articleForum .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+
+@media screen and (min-width: 1024px) {
+  .articleForum .card-body {
+    align-items: center;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+
+  .articleForum .card-title {
+    padding-left: 1.2rem;
+  }
+
+  .articleForum-participants {
+    flex-wrap: nowrap;
+  }
+
+  .articleForum-data {
+    flex-wrap: nowrap;
+    gap: .4rem;
+  }
+
+  .articleForum-data p {
+    width: 11rem;
+    text-align: center;
+  }
+
+  .articleForum-data p span {
+    display: none;
+  }
+
+  .articleForum-participants img {
+    height: 3.2rem;
+    width: 3.2rem;
+  }
+}

@@ -1,0 +1,62 @@
+.forum-nav {
+  align-items: center;
+  border-bottom: .1rem solid var(--black);
+  display: flex;
+  justify-content: end;
+  padding: 2rem 0 1.6rem;
+}
+
+#forum-nav-addTopic {
+  font-size: 1.8rem;
+}
+
+.forum .articles {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.forum .articles .read {
+  opacity: .8;
+}
+
+.forum .articles .cardActive {
+  background-color: rgba(0, 255, 0, .07);
+}
+
+.forum .articles .cardDeactive {
+  background-color: rgba(255, 0, 0, .07);
+}
+
+.forum-last-nav {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .forum-last-nav {
+    align-items: center;
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    opacity: .7;
+    padding: 0 1rem;
+  }
+
+  .forum-last-nav_title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .forum-last-nav_data {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .forum-last-nav_data button {
+    font-size: 1.6rem;
+    height: 4.8rem;
+    padding: 0;
+    width: 11rem;
+  }
+}
