@@ -1,0 +1,56 @@
+.cardTopic {
+  font-size: 1.6rem;
+  margin-top: 1.2rem;
+  /* margin: 0 auto;
+  max-width: 1080px; */
+}
+
+.cardTopic .card-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardTopic .card-header .profile-info {
+  align-items: center;
+  color: #000;
+  display: flex;
+  gap: .8rem;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.cardTopic .card-header img {
+  height: 4rem;
+  width: 4rem;
+}
+
+.cardTopic .card-header .username {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+.cardTopic .card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  justify-content: end;
+}
+
+.cardTopic .card-footer .bi {
+  font-size: 2.8rem;
+}
+
+.bi-heart-fill {
+  color: rgba(255, 0, 0, .5);
+}
+
+.bi-share-fill {
+  color: rgba(0, 0, 255, .5);
+}
+
+.bi-star-fill {
+  color: rgba(255, 255, 0, .5);
+}

@@ -8,6 +8,7 @@
   animation: adjust-header linear both;
   animation-timeline: scroll();
   animation-range: 0 100px;
+  z-index: 10;
 }
 
 .header-main nav {
