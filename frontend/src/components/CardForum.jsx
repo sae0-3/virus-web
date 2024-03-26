@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ReactMarkdown from 'react-markdown'
+import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm';
 import personIcon from '../../node_modules/bootstrap-icons/icons/person-circle.svg'
 import '../styles/CardForum.css'
@@ -45,14 +45,13 @@ export const CardTopic = () => {
 
       <div className='card-body'>
         <div className='markdown-content'>
-          <ReactMarkdown
+          <Markdown
             children={markdownTaskList}
-          remarkPlugins={[remarkGfm]} />
+            remarkPlugins={[remarkGfm]} />
         </div>
       </div>
 
       <div className='card-footer'>
-        
         <div className="btns">
           <button
             type='button'

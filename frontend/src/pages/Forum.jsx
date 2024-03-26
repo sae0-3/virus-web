@@ -54,6 +54,9 @@ export const Forum = () => {
         <ArticleForum />
         <ArticleForum />
         <ArticleForum />
+        <ArticleForum />
+        <ArticleForum />
+        <ArticleForum />
       </section>
     </div>
   )

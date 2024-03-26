@@ -1,5 +1,6 @@
 import { Header } from './components/Header'
 import { Forum } from './pages/Forum'
+import { ForumNewTopic } from './pages/ForumNewTopic'
 import { ForumTopic } from './pages/ForumTopic'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -11,7 +12,9 @@ export const App = () => {
   return (
     <>
       <Header />
-      <Forum />
+      {/* <ForumTopic /> */}
+      {/* <Forum /> */}
+      <ForumNewTopic />
     </>
   )
 }

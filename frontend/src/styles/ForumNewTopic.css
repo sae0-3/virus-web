@@ -1,0 +1,44 @@
+.forumNewTopic {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  gap: 2rem;
+  justify-content: center;
+  padding: 2.4rem 0;
+}
+
+.forumNewTopic-title {
+  font-size: 2.4rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.forumNewTopic-btns {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1.6rem;
+}
+
+.forumNewTopic-btns .btn {
+  font-size: 1.6rem;
+}
+
+.forumNewTopic .addTopic {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.forumNewTopic .addTopic .form-control {
+  font-size: 1.64rem;
+}
+
+
+.w-md-editor-toolbar svg {
+  height: 1.6rem;
+  width: 1.6rem;
+}
+
+.wmde-markdown-var {
+  min-height: 50vh;
+}

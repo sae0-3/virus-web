@@ -13,7 +13,7 @@
 
 .cardTopic .card-header .profile-info {
   align-items: center;
-  color: #000;
+  color: var(--white);
   display: flex;
   gap: .8rem;
   justify-content: center;
@@ -21,6 +21,8 @@
 }
 
 .cardTopic .card-header img {
+  background-color: #fff; /* borrer */
+  border-radius: 50%;
   height: 4rem;
   width: 4rem;
 }
