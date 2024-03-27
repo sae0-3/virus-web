@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import '../styles/Header.css'
 
 
@@ -6,9 +7,9 @@ export const Header = () => {
     <>
       <header className='header-main'>
         <nav className='container'>
-          <a href='#'
+          <Link to='/'
             className='navbar-brand flex-grow-1'
-          >Sansi Web</a>
+          >Sansi Web</Link>
           <div>
             <button
               type='button'
@@ -44,32 +45,32 @@ export const Header = () => {
         <section className='offcanvas-body'>
           <ul className='list-group list-group-flush justify-content-center'>
             <li className='list-group-item'>
-              <a href='#'
+              <Link to='/'
                 className='link-body-emphasis
                             link-offset-2
                             link-underline-opacity-25
                             link-underline-opacity-75-hover'
-              >Foro</a></li>
+              >Foro</Link></li>
             <li className='list-group-item'>
-              <a href='#'
+              <Link to='/anuncios'
                 className='link-body-emphasis
                               link-offset-2
                               link-underline-opacity-25
                               link-underline-opacity-75-hover'
-              >Anuncios</a></li>
+              >Anuncios</Link></li>
             <li className='list-group-item'>
-              <a href='#'
+              <Link to='/chat'
                 className='link-body-emphasis
                               link-offset-2
                               link-underline-opacity-25
                               link-underline-opacity-75-hover'
-              >Chats</a></li>
+              >Chats</Link></li>
           </ul>
         </section>
         <section className='offcanvas-footer'>
           <div>
-            <a href='#' className='btn btn-outline-primary'>Iniciar Sesión</a>
-            <a href='#' className='btn btn-outline-warning'>Registrarse</a>
+            <Link to='' className='btn btn-outline-primary'>Iniciar Sesión</Link>
+            <Link to='' className='btn btn-outline-warning'>Registrarse</Link>
           </div>
         </section>
       </div>

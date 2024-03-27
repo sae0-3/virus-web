@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import personIcon from '../../node_modules/bootstrap-icons/icons/person.svg'
 import '../styles/ArticleForum.css'
 
@@ -5,10 +6,10 @@ import '../styles/ArticleForum.css'
 export const ArticleForum = () => {
   return (
     <article className='card articleForum cardActive'>
-      <div href='#' className='card-body'>
-        <a href='#'
+      <div className='card-body'>
+        <Link to='/tema/1'
           className='card-title h1'
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat libero magni officia voluptatibus!</a>
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat libero magni officia voluptatibus!</Link>
 
         <section className='articleForum-participants'>
           <a href='#'>

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import MDEditor, { commands } from '@uiw/react-md-editor'
+import { Link } from 'react-router-dom'
 import '../styles/ForumNewTopic.css'
 
 
@@ -45,22 +46,22 @@ export const ForumNewTopic = () => {
           required
         />
 
-        <div className="forumNewTopic-categories">
+        <div className='forumNewTopic-categories'>
           <input
             aria-autocomplete='list'
             autoComplete='off'
-            type="text"
-            className="form-control"
-            id="categorias"
-            placeholder="Categorias"
+            type='text'
+            className='form-control'
+            id='categorias'
+            placeholder='Categorias'
             value={nuevaCategoria}
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
             onKeyDown={handleKeyPress}
           />
-          <div id="categorias-seleccionadas">
+          <div id='categorias-seleccionadas'>
             {categorias.map((categoria, index) => (
-              <span key={index} className="badge badge-primary m-2">
+              <span key={index} className='badge badge-primary m-2'>
                 {categoria}
               </span>
             ))}
@@ -74,9 +75,9 @@ export const ForumNewTopic = () => {
           // extraCommands={[]}
           onChange={(val) => setValue(val)}/>
 
-        <div className="forumNewTopic-btns">
-          <a href="#" className='btn btn-danger'>
-            <i className='bi bi-trash'></i> Cancelar</a>
+        <div className='forumNewTopic-btns'>
+          <Link to='/' className='btn btn-danger'>
+            <i className='bi bi-trash'></i> Cancelar</Link>
           <button className='btn btn-success' type='submit'>
             <i className='bi bi-floppy'></i> Crear</button>
         </div>

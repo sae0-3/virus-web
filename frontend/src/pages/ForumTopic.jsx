@@ -18,23 +18,23 @@ export const ForumTopic = () => {
           </div>
           <button
               className='btn btn-secondary'
-              data-bs-target="#collapseTopicCategories"
-              data-bs-toggle="collapse"
-              aria-expanded="false"
-              aria-controls="collapseTopicCategories"
+              data-bs-target='#collapseTopicCategories'
+              data-bs-toggle='collapse'
+              aria-expanded='false'
+              aria-controls='collapseTopicCategories'
             >Categorias</button>
         </div>
 
-        <div className="collapse" id="collapseTopicCategories">
+        <div className='collapse' id='collapseTopicCategories'>
           <div>
-            <a href="#"><span className="badge text-bg-primary">Categoria_#</span></a>
-            <a href="#"><span className="badge text-bg-secondary">Categoria_#</span></a>
-            <a href="#"><span className="badge text-bg-success">Categoria_#</span></a>
-            <a href="#"><span className="badge text-bg-danger">Categoria_#</span></a>
-            <a href="#"><span className="badge text-bg-warning">Categoria_#</span></a>
-            <a href="#"><span className="badge text-bg-info">Categoria_#</span></a>
-            <a href="#"><span className="badge text-bg-light">Categoria_#</span></a>
-            <a href="#"><span className="badge text-bg-dark">Categoria_#</span></a>
+            <a href='#'><span className='badge text-bg-primary'>Categoria_#</span></a>
+            <a href='#'><span className='badge text-bg-secondary'>Categoria_#</span></a>
+            <a href='#'><span className='badge text-bg-success'>Categoria_#</span></a>
+            <a href='#'><span className='badge text-bg-danger'>Categoria_#</span></a>
+            <a href='#'><span className='badge text-bg-warning'>Categoria_#</span></a>
+            <a href='#'><span className='badge text-bg-info'>Categoria_#</span></a>
+            <a href='#'><span className='badge text-bg-light'>Categoria_#</span></a>
+            <a href='#'><span className='badge text-bg-dark'>Categoria_#</span></a>
           </div>
         </div>
       </div>

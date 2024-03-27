@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ArticleForum } from '../components/ArticleForum'
+import { Link } from 'react-router-dom';
 import '../styles/Forum.css'
 
 
@@ -16,10 +17,10 @@ export const Forum = () => {
   return (
     <div className='container forum'>
       <nav className='forum-nav'>
-        <a href='#'
+        <Link to='/nuevo-tema'
           className='btn btn-secondary'
           id='forum-nav-addTopic'
-        ><i className='bi bi-plus'></i>Nuevo Tema</a>
+        ><i className='bi bi-plus'></i>Nuevo Tema</Link>
       </nav>
 
       <section className='forum-last-nav'>
