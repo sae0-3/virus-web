@@ -10,21 +10,13 @@ export const Header = () => {
           <Link to='/'
             className='navbar-brand flex-grow-1'
           >Sansi Web</Link>
-          <div>
-            <button
-              type='button'
-              className='nav-link'
-              data-bs-toggle='modal'
-              data-bs-target='#searchModal'
-            ><i className='bi-search'></i></button>
-            <button
-              type='button'
-              className='nav-link'
-              data-bs-toggle='offcanvas'
-              data-bs-target='#offcanvasHeader'
-              aria-controls='offcanvasHeader'
-            ><i className='bi-list'></i></button>
-          </div>
+          <button
+            type='button'
+            className='nav-link'
+            data-bs-toggle='offcanvas'
+            data-bs-target='#offcanvasHeader'
+            aria-controls='offcanvasHeader'
+          ><i className='bi-list'></i></button>
         </nav>
       </header>
 
@@ -69,60 +61,10 @@ export const Header = () => {
         </section>
         <section className='offcanvas-footer'>
           <div>
-            <Link to='' className='btn btn-outline-primary'>Iniciar Sesión</Link>
-            <Link to='' className='btn btn-outline-warning'>Registrarse</Link>
+            <Link to='#' className='btn btn-outline-primary'>Iniciar Sesión</Link>
+            <Link to='#' className='btn btn-outline-warning'>Registrarse</Link>
           </div>
         </section>
-      </div>
-
-      <div
-        className='modal fade modalSearch'
-        id='searchModal'
-        tabIndex='-1'
-        aria-labelledby='searchModalLabel'
-        aria-hidden='true'>
-        <div className='modal-dialog'>
-          <div className='modal-content'>
-            <section className='modal-header'>
-              <button
-                type='button'
-                className='btn-close'
-                data-bs-dismiss='modal'
-                aria-label='Close'
-              ></button>
-            </section>
-            <section className='modal-body'>
-              <form>
-                <div className='row'>
-                  <div className='col-8'>
-                    <input
-                      type='text'
-                      className='form-control'
-                      id='recipient-name' />
-                  </div>
-                  <div className='col-4'>
-                    <select className='form-select'>
-                      <option value='1'>Usuario</option>
-                      <option value='2'>Categoria</option>
-                      <option value='3'>Tema/Anuncio</option>
-                    </select>
-                  </div>
-                </div>
-              </form>
-            </section>
-            <section className='modal-footer justify-content-between'>
-              <button
-                type='button'
-                className='btn btn-outline-danger'
-                data-bs-dismiss="modal"
-              >Cerrar</button>
-              <button
-                type='button'
-                className='btn btn-outline-success'
-              >Buscar</button>
-            </section>
-          </div>
-        </div>
       </div>
     </>
   )

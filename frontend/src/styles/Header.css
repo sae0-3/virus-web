@@ -14,21 +14,12 @@
 .header-main nav {
   align-items: center;
   display: flex;
+  justify-content: space-between;
 }
 
 .header-main .navbar-brand {
   font-size: 2.4rem;
   font-weight: bold;
-}
-
-.header-main nav div {
-  align-items: center;
-  display: flex;
-  gap: 2rem;
-}
-
-.header-main .bi-search {
-  font-size: 3.2rem;
 }
 
 .header-main .bi-list {
@@ -70,17 +61,6 @@
 
 .offcanvasHeader .offcanvas-footer a {
   font-size: 2rem;
-}
-
-
-.modalSearch .modal-header .btn-close {
-  font-size: 2.4rem;
-}
-
-.modalSearch .modal-body input,
-.modalSearch .modal-body select,
-.modalSearch .modal-footer .btn {
-  font-size: 1.6rem;
 }
 
 
