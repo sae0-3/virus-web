@@ -1,5 +1,7 @@
 # Plataforma de Debate/Ayuda Estudiantil
 
+## Grupo: VIRUS
+
 ### Descripcion
 
 El sistema consiste en un foro/red social para preguntas referentes a ayudas academicas u otros temas relacionados a la universidad.
