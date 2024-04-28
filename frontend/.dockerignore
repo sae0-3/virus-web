@@ -1,5 +1,6 @@
-*.log
-pnpm-lock.yaml
-
 node_modules
+.git
+.gitignore
+*.md
 dist
+.pnpm-store

@@ -9,7 +9,7 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 COPY --from=dev-deps /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+RUN yarn build
 
 
 FROM nginx:1.25.5 AS prod
