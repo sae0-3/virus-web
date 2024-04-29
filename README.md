@@ -50,3 +50,6 @@ No existira grupos, solo chats privados.
 
 #### DOCKER
   * https://imaginaformacion.com/tutoriales/que-es-docker-compose
+
+#### WSL2
+  * https://youtu.be/3Tkkk3ePZKo?si=VU8f3UJ_zrznv3nx
