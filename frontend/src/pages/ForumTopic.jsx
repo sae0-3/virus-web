@@ -1,5 +1,31 @@
-import { CardTopic } from '../components/CardForum'
+import { CardTopic } from '../components/CardTopic'
 import '../styles/ForumTopic.css'
+
+
+const text1 = `
+### Title
+\`go build main.go\`
+
+- [ ] Task list 1
+- [ ] Pending task list 2
+- [x] Completed task list 3
+- [x] Completed task list 4
+
+| Nombre    | Edad | Ciudad   |
+| --------- | ---- | -------- |
+| Juan      | 25   | Madrid   |
+| María     | 30   | Barcelona|
+| Carlos    | 28   | Valencia |
+`
+
+const text2 = `
+# Titulo auxiliar del primer comentario
+Descripcion del primer comentario del tema X
+`
+
+const text3 = `
+Solo texto sin titulo\n\n***Resaltado e italico***
+`
 
 
 export const ForumTopic = () => {
@@ -7,7 +33,7 @@ export const ForumTopic = () => {
     <div className='container'>
       <div className='cardTopicForum'>
         <h2 className='cardTopicForum-title'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, dolores.</h2>
-        <CardTopic />
+        <CardTopic content={text1} />
 
         <div className='cardTopicForum-footer'>
           <span className='badge rounded-pill text-bg-success'>Activo</span>
@@ -41,8 +67,8 @@ export const ForumTopic = () => {
 
       <hr />
 
-      <CardTopic />
-      <CardTopic />
+      <CardTopic content={text2} />
+      <CardTopic content={text3} />
     </div>
   )
 }

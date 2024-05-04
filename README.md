@@ -43,6 +43,8 @@ No existira grupos, solo chats privados.
 ****
 
 ## RECURSOS FRONTEND - BACKEND
+* https://discuss.jsonapi.org/
+* https://forum.codeselfstudy.com/
 
 #### MARKDOWN
   * https://commonmark.org/

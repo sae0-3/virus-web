@@ -2,35 +2,21 @@ import { useState } from 'react';
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm';
 import personIcon from '../../node_modules/bootstrap-icons/icons/person-circle.svg'
-import '../styles/CardForum.css'
+import '../styles/CardTopic.css'
 
 
-export const CardTopic = () => {
-  const markdownTaskList = `
-  ### Title
-  \`go build main.go\`
-
-  - [ ] Task list 1
-  - [ ] Pending task list 2
-  - [x] Completed task list 3
-  - [x] Completed task list 4
-
-  | Nombre    | Edad | Ciudad   |
-  | --------- | ---- | -------- |
-  | Juan      | 25   | Madrid   |
-  | María     | 30   | Barcelona|
-  | Carlos    | 28   | Valencia |
-`
-
-  const [iconHeart, setIconHeart] = useState('heart')
+export const CardTopic = ({ content }) => {
+  const [iconLike, setIconLike] = useState('hand-thumbs-up')
   const [iconShare, setIconShare] = useState('share')
-  const [iconStar, setIconStar] = useState('star')
-  const [iconReply, setIconReply] = useState('reply')
+  const [iconSave, setIconSave] = useState('bookmark')
+  const [iconReport, setIconReport] = useState('exclamation-triangle')
 
-  const handleClick = (icon, funcIcon) => {
+  const handleClick = (icon, callback) => {
     const data = icon.split('-')
-    const newIcon = (data.length === 2) ? data[0] : `${icon}-fill`
-    funcIcon(newIcon)
+    const newIcon = (data[data.length - 1] === 'fill')
+        ? icon.replace('-fill', '')
+        : `${icon}-fill`
+    callback(newIcon)
   }
 
   return (
@@ -46,7 +32,7 @@ export const CardTopic = () => {
       <div className='card-body'>
         <div className='markdown-content'>
           <Markdown
-            children={markdownTaskList}
+            children={content}
             remarkPlugins={[remarkGfm]} />
         </div>
       </div>
@@ -56,8 +42,8 @@ export const CardTopic = () => {
           <button
             type='button'
             className='btn'
-            onClick={() => { handleClick(iconHeart, setIconHeart) }}
-          ><i className={`bi bi-${iconHeart}`}></i></button>
+            onClick={() => { handleClick(iconLike, setIconLike) }}
+          ><i className={`bi bi-${iconLike}`}></i></button>
           <button
             type='button'
             className='btn'
@@ -66,13 +52,13 @@ export const CardTopic = () => {
           <button
             type='button'
             className='btn'
-            onClick={() => { handleClick(iconStar, setIconStar) }}
-          ><i className={`bi bi-${iconStar}`}></i></button>
+            onClick={() => { handleClick(iconSave, setIconSave) }}
+          ><i className={`bi bi-${iconSave}`}></i></button>
           <button
             type='button'
             className='btn'
-            onClick={() => { handleClick(iconReply, setIconReply) }}
-          ><i className={`bi bi-${iconReply}`}></i></button>
+            onClick={() => { handleClick(iconReport, setIconReport) }}
+          ><i className={`bi bi-${iconReport}`}></i></button>
         </div>
       </div>
     </div>
