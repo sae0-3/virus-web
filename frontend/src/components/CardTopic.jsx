@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import Markdown from 'react-markdown'
-import remarkGfm from 'remark-gfm';
-import personIcon from '../../node_modules/bootstrap-icons/icons/person-circle.svg'
+import remarkGfm from 'remark-gfm'
+import { Link } from 'react-router-dom'
 import '../styles/CardTopic.css'
 
 
-export const CardTopic = ({ content }) => {
+export const CardTopic = ({ user_id, content, username, profile, date }) => {
   const [iconLike, setIconLike] = useState('hand-thumbs-up')
   const [iconShare, setIconShare] = useState('share')
   const [iconSave, setIconSave] = useState('bookmark')
@@ -13,7 +13,7 @@ export const CardTopic = ({ content }) => {
 
   const handleClick = (icon, callback) => {
     const data = icon.split('-')
-    const newIcon = (data[data.length - 1] === 'fill')
+    const newIcon = (data.pop() == 'fill')
         ? icon.replace('-fill', '')
         : `${icon}-fill`
     callback(newIcon)
@@ -22,11 +22,11 @@ export const CardTopic = ({ content }) => {
   return (
     <div className='cardTopic card'>
       <div className='card-header'>
-        <a href='#' className='profile-info'>
-          <img src={personIcon} alt='user profile' />
-          <h5 className='username'>username</h5>
-        </a>
-        <span className='date'>24/03/2024</span>
+        <Link to={`/usuario/${user_id}`} className='profile-info'>
+          <img src={profile} alt='user profile' />
+          <h5 className='username'>{ username }</h5>
+        </Link>
+        <span className='date'>{ date }</span>
       </div>
 
       <div className='card-body'>

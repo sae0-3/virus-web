@@ -1,11 +1,19 @@
 ## Vista Previa
 
-<div class="imagenes" style="display:flex; flex-wrap:wrap; justify-content:space-between;">
+<div style="display:flex; flex-wrap:wrap; gap:2rem">
   <img src="docs/1.png" alt="imagen referencia 1" width="200">
   <img src="docs/2.png" alt="imagen referencia 2" width="200">
   <img src="docs/3.png" alt="imagen referencia 3" width="200">
   <img src="docs/4.png" alt="imagen referencia 4" width="200">
 </div>
+
+<div style="display:flex; flex-wrap:wrap; gap:2rem">
+  <img src="docs/5.png" alt="imagen referencia 5" width="200" height="500">
+  <img src="docs/6.png" alt="imagen referencia 6" width="200" height="500">
+  <img src="docs/7.png" alt="imagen referencia 7" width="200" height="500">
+</div>
+
+****
 
 ## Recursos
   * https://www.copycat.dev/blog/react-markdown/

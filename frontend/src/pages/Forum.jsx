@@ -1,28 +1,29 @@
 import { ArticleForum } from '../components/ArticleForum'
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import '../styles/Forum.css'
 
 
 export const Forum = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(null)
+  const URL_API = 'http://localhost:8080/api/v0'
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/v0/temas');
+        const response = await fetch(`${URL_API}/temas`)
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Network response was not ok')
         }
-        const jsonData = await response.json();
+        const jsonData = await response.json()
         setData(jsonData);
       } catch (error) {
-        console.error('There was a problem with your fetch operation:', error);
+        console.error('There was a problem with your fetch operation:', error)
       }
-    };
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   return (
     <div className='container forum'>
@@ -46,7 +47,7 @@ export const Forum = () => {
         <Link to='/nuevo-tema' className='btn btn-secondary'
         ><i className='bi bi-plus'></i>Nuevo Tema</Link>
 
-        
+
         <div id='searchModal'
           className='modal fade modalSearch'
           tabIndex='-1'
@@ -112,13 +113,17 @@ export const Forum = () => {
         { data
           ? (
             <>
-              {data.map((item) => (
-                <ArticleForum key={item.id}
-                              id={item.id}
-                              title={item.title}
-                              create_at={item.create_at}
-                              comments={item.comments}
-                              views={item.views} /> ))}
+              {data.map(({ id, title, created_at, comments, views, active, author, participants }) => (
+                <ArticleForum
+                  key={id}
+                  id={id}
+                  title={title}
+                  created_at={created_at}
+                  comments={comments}
+                  views={views}
+                  active={active}
+                  author={author}
+                  participants={participants} />))}
             </>
           ) : (<p>Cargando...</p>)}
       </section>

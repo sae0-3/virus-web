@@ -56,3 +56,7 @@
 .bi-exclamation-triangle-fill {
   color: rgba(255, 255, 0, 1);
 }
+
+.cardTopic .card-body .markdown-content img {
+  max-width: 100%;
+}

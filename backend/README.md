@@ -1,3 +1,12 @@
+## Vista Previa
+
+<div style="display:flex">
+  <img src="docs/1.png" alt="imagen referencia 1" width="50%">
+  <img src="docs/2.png" alt="imagen referencia 2" width="50%">
+</div>
+
+****
+
 ## Recursos
   * https://http.cat/
   * https://developer.mozilla.org/en-US/docs/Web/HTTP/Status

@@ -1,74 +1,81 @@
 import { CardTopic } from '../components/CardTopic'
+import { useState, useEffect } from 'react'
 import '../styles/ForumTopic.css'
 
 
-const text1 = `
-### Title
-\`go build main.go\`
-
-- [ ] Task list 1
-- [ ] Pending task list 2
-- [x] Completed task list 3
-- [x] Completed task list 4
-
-| Nombre    | Edad | Ciudad   |
-| --------- | ---- | -------- |
-| Juan      | 25   | Madrid   |
-| María     | 30   | Barcelona|
-| Carlos    | 28   | Valencia |
-`
-
-const text2 = `
-# Titulo auxiliar del primer comentario
-Descripcion del primer comentario del tema X
-`
-
-const text3 = `
-Solo texto sin titulo\n\n***Resaltado e italico***
-`
-
-
 export const ForumTopic = () => {
-  return (
-    <div className='container'>
-      <div className='cardTopicForum'>
-        <h2 className='cardTopicForum-title'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, dolores.</h2>
-        <CardTopic content={text1} />
+  const [data, setData] = useState(null)
+  const URL_API = 'http://localhost:8080/api/v0'
 
-        <div className='cardTopicForum-footer'>
-          <span className='badge rounded-pill text-bg-success'>Activo</span>
-          <div className='cardTopicForum-footer_data'>
-            <p>1<span>Respuestas</span></p>
-            <p>10<span>Vistas</span></p>
-            <p>1<span>Usuarios</span></p>
-          </div>
-          <button
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const idx = location.pathname.split('/').pop()
+        const response = await fetch(`${URL_API}/tema/${idx}`)
+        if (!response.ok) {
+          throw new Error('Network response was not ok')
+        }
+        const jsonData = await response.json()
+        setData(jsonData);
+      } catch (error) {
+        console.error('There was a problem with your fetch operation:', error)
+      }
+    }
+
+    fetchData()
+  }, [])
+
+  return (
+    <>
+    {data && (
+      <div className='container'>
+        <div className='cardTopicForum'>
+          <h2 className='cardTopicForum-title'>{ data.title }</h2>
+          <CardTopic content={data.description}
+                    username={data.author.username}
+                    profile={data.author.profile}
+                    date={data.created_at}
+                    user_id={data.author.id} />
+
+          <div className='cardTopicForum-footer'>
+            <span className={`badge rounded-pill text-bg-${data.active ? 'success' : 'danger'}`}>
+              { data.active ? 'Abierto' : 'Cerrado' }</span>
+            <div className='cardTopicForum-footer_data'>
+              <p>{ data.comments.length }<span>Respuestas</span></p>
+              <p>{ data.views }<span>Vistas</span></p>
+            </div>
+            <button
               className='btn btn-secondary'
               data-bs-target='#collapseTopicCategories'
               data-bs-toggle='collapse'
               aria-expanded='false'
               aria-controls='collapseTopicCategories'
             >Categorias</button>
-        </div>
+          </div>
 
-        <div className='collapse' id='collapseTopicCategories'>
-          <div>
-            <a href='#'><span className='badge text-bg-primary'>Categoria_#</span></a>
-            <a href='#'><span className='badge text-bg-secondary'>Categoria_#</span></a>
-            <a href='#'><span className='badge text-bg-success'>Categoria_#</span></a>
-            <a href='#'><span className='badge text-bg-danger'>Categoria_#</span></a>
-            <a href='#'><span className='badge text-bg-warning'>Categoria_#</span></a>
-            <a href='#'><span className='badge text-bg-info'>Categoria_#</span></a>
-            <a href='#'><span className='badge text-bg-light'>Categoria_#</span></a>
-            <a href='#'><span className='badge text-bg-dark'>Categoria_#</span></a>
+          <div className='collapse' id='collapseTopicCategories'>
+            <div>
+              {data.categories.map((item, i) => (
+                <p key={i}><span className='badge text-bg-primary'>{ item }</span></p>
+              ))}
+            </div>
           </div>
         </div>
+
+        <hr />
+
+        {data.comments.map(({id, content, user: { user_id, username, profile }, commented_at}) => (
+          <CardTopic key={id}
+            content={content}
+            username={username}
+            profile={profile}
+            date={commented_at}
+            user_id={user_id}
+          />
+        ))}
       </div>
-
-      <hr />
-
-      <CardTopic content={text2} />
-      <CardTopic content={text3} />
-    </div>
+    )}
+    { !data && <p>Cargando...</p> }
+    </>
   )
 }
