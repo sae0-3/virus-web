@@ -3,13 +3,14 @@ import personIcon from '../../node_modules/bootstrap-icons/icons/person.svg'
 import '../styles/ArticleForum.css'
 
 
-export const ArticleForum = () => {
+export const ArticleForum = ({ id, title, create_at, comments, views }) => {
+
   return (
     <article className='card articleForum cardActive'>
       <div className='card-body'>
-        <Link to='/tema/1'
+        <Link to={`/tema/${id}`}
           className='card-title h1'
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat libero magni officia voluptatibus!</Link>
+        >{ title }</Link>
 
         <section className='articleForum-participants'>
           <a href='#'>
@@ -25,9 +26,9 @@ export const ArticleForum = () => {
         </section>
 
         <section className='articleForum-data'>
-          <p>1<span>Respuestas</span></p>
-          <p>10<span>Vistas</span></p>
-          <p>25/03/2024<span>Actividad</span></p>
+          <p>{ comments }<span>Respuestas</span></p>
+          <p>{ views }<span>Vistas</span></p>
+          <p>{ create_at }<span>Actividad</span></p>
         </section>
       </div>
     </article>

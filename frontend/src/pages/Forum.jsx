@@ -1,9 +1,29 @@
 import { ArticleForum } from '../components/ArticleForum'
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import '../styles/Forum.css'
 
 
 export const Forum = () => {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/v0/temas');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error('There was a problem with your fetch operation:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className='container forum'>
       <nav className='forum-nav'>
@@ -89,16 +109,18 @@ export const Forum = () => {
       </nav>
 
       <section className='articles'>
-        <ArticleForum />
-        <ArticleForum />
-        <ArticleForum />
-        <ArticleForum />
-        <ArticleForum />
-        <ArticleForum />
-        <ArticleForum />
-        <ArticleForum />
-        <ArticleForum />
-        <ArticleForum />
+        { data
+          ? (
+            <>
+              {data.map((item) => (
+                <ArticleForum key={item.id}
+                              id={item.id}
+                              title={item.title}
+                              create_at={item.create_at}
+                              comments={item.comments}
+                              views={item.views} /> ))}
+            </>
+          ) : (<p>Cargando...</p>)}
       </section>
     </div>
   )
