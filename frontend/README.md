@@ -1,3 +1,12 @@
+### Vista Previa
+
+<div class="imagenes" style="display:flex; flex-wrap:wrap; justify-content:space-between;">
+  <img src="docs/1.png" alt="imagen referencia 1" width="200">
+  <img src="docs/2.png" alt="imagen referencia 2" width="200">
+  <img src="docs/3.png" alt="imagen referencia 3" width="200">
+  <img src="docs/4.png" alt="imagen referencia 4" width="200">
+</div>
+
 #### Requisitos previos
   * Tener docker instalado (wsl2 en caso de tener windows)
 
