@@ -2,7 +2,7 @@
 
 ## Grupo: VIRUS
 
-#### Descripcion
+## Descripcion
 
 El sistema consiste en un foro/red social para preguntas referentes a ayudas academicas u otros temas relacionados a la universidad.
 La pagina de inicio mostrara tres secciones: en la primera parte los nuevos anuncios, luego los nuevos posts, y por ultimo los usuarios destacados (aquellos que brindan informacion de relevancia).
@@ -39,6 +39,58 @@ De momento solo se podran enviar texto e imagenes.
 
 No existira grupos, solo chats privados.
 
+
+****
+## HACER CORRER
+#### REQUISITOS
+  * Tener docker instalado (para windows [wsl2](https://learn.microsoft.com/es-es/windows/wsl/install))
+
+#### DESARROLLO
+1. Construir el contenedor
+```hs
+docker compose -f docker-compose-dev.yml up -d
+```
+
+2. Identificar el id que se proporciono a los contenedores de node (`virus-web-nodejs-frontend-1` y `virus-web-nodejs-backend-1`)
+```hs
+docker container ls
+```
+
+3. Ingresar a la terminal interactiva de `virus-web-nodejs-backend-1`
+```hs
+docker exec -it <id_container> sh
+```
+
+4. Instalar pnpm (opcional)
+```hs
+npm install -g pnpm
+```
+
+5. Instalar los paquetes de desarrollo (de no haber instalado pnpm se usa npm)
+```hs
+pnpm install
+```
+
+6. Hacer correr el servidor de desarrollo
+```hs
+npm run dev
+```
+
+7. Abrir otra terminal
+
+8. Volver al paso 3 y ahora hacerlo para `virus-web-nodejs-frontend-1`
+
+9. Eliminar los contenedores
+```hs
+docker compose -f docker-compose-dev.yml down
+```
+
+#### PRODUCCION
+Ejecutar:
+
+```hs
+docker compose up -d
+```
 
 ****
 

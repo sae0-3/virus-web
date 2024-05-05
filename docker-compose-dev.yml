@@ -1,4 +1,19 @@
 services:
+# FRONTEND
+  nodejs-frontend:
+    working_dir: /app
+    image: node:22-alpine
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+
+
+# BACKEND
   mariadb:
     image: mariadb:11-jammy
     environment:
@@ -7,9 +22,9 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - ./../db/data:/var/lib/mysql
+      - ./db/data:/var/lib/mysql
 
-  nodejs:
+  nodejs-backend:
     depends_on:
       - mariadb
     working_dir: /app
@@ -17,13 +32,15 @@ services:
     environment:
       - NODE_ENV=development
     volumes:
-      - .:/app
+      - ./backend:/app
     ports:
       - "8080:8080"
     stdin_open: true
     tty: true
 
   phpmyadmin:
+    depends_on:
+      - mariadb
     image: phpmyadmin:apache
     ports:
       - "80:80"

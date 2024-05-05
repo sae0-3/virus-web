@@ -1,11 +1,8 @@
-#### Requisitos previos
-  * Tener docker instalado (wsl2 en caso de tener windows)
-
-#### Hacer correr
-La construccion es la misma que aparece en el directorio frontend, con la diferencias que se debe de crear un documento `.env` con las configuraciones de la base de datos
-
-#### Recursos
+## Recursos
   * https://http.cat/
   * https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
   * https://github.com/motdotla/dotenv/blob/master/README-es.md
   * https://sidorares.github.io/node-mysql2/docs
+  * https://blog.prosite.dev/api-rest-con-nodejs-express-y-mysql/
+  * https://blog.postman.com/how-to-create-a-rest-api-with-node-js-and-express/
+  * https://medium.com/@bipingiri27/crud-with-node-js-express-mysql-7ce1d4acb418
