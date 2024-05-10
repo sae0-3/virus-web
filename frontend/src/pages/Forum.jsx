@@ -6,17 +6,17 @@ import '../styles/Forum.css'
 
 export const Forum = () => {
   const [data, setData] = useState(null)
-  const URL_API = 'http://localhost:8080/api/v0'
+  const URL_API = 'http://localhost:8080/api/v1/topics'
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${URL_API}/temas`)
+        const response = await fetch(URL_API)
         if (!response.ok) {
           throw new Error('Network response was not ok')
         }
         const jsonData = await response.json()
-        setData(jsonData);
+        setData(jsonData)
       } catch (error) {
         console.error('There was a problem with your fetch operation:', error)
       }

@@ -1,12 +1,3 @@
-## Vista Previa
-
-<div style="display:flex">
-  <img src="docs/1.png" alt="imagen referencia 1" width="50%">
-  <img src="docs/2.png" alt="imagen referencia 2" width="50%">
-</div>
-
-****
-
 ## Recursos
   * https://http.cat/
   * https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
@@ -15,3 +6,7 @@
   * https://blog.prosite.dev/api-rest-con-nodejs-express-y-mysql/
   * https://blog.postman.com/how-to-create-a-rest-api-with-node-js-and-express/
   * https://medium.com/@bipingiri27/crud-with-node-js-express-mysql-7ce1d4acb418
+  * https://ralexs.hashnode.dev/servidor-nodejs-basado-en-clases
+  * https://github.com/midudev/curso-node-js
+  * https://github.com/Klerith/curso-node-restserver
+  * https://es.javascript.info/modules-dynamic-imports
