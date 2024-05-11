@@ -33,7 +33,7 @@ export const loginUser = async (username, password) => {
       if (!result) {
         status = 2
       } else {
-        id = result.id
+        id = rows[0].ID
       }
     }
 
