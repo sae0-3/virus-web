@@ -1,9 +1,12 @@
 'use strict'
 
 import 'dotenv/config'
-import ServerApiV1 from './src/api/v1/server.js'
+import ServerApiV1 from './src/api/v1/index.js'
+import ServerAuth from './src/auth/index.js'
 
 
-const sav1 = new ServerApiV1(8080)
+const serverAuth = new ServerAuth(8000)
+const serverApiV1 = new ServerApiV1(8080)
 
-sav1.listen()
+serverAuth.listen()
+serverApiV1.listen()
