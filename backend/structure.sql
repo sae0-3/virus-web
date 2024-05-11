@@ -6,11 +6,11 @@ USE sansi_web;
 CREATE TABLE USUARIO (
   ID INT NOT NULL AUTO_INCREMENT,
   username VARCHAR(50) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
   correo_electronico CHAR(23) NOT NULL UNIQUE,
-  nombre VARCHAR(30) NOT NULL,
+  nombre VARCHAR(50) NOT NULL,
   apellido_paterno VARCHAR(30),
   apellido_materno VARCHAR(30),
-  numero_celular VARCHAR(20) NOT NULL UNIQUE,
   foto_perfil VARCHAR(255) NOT NULL,
   fecha_creacion TIMESTAMP NOT NULL DEFAULT (NOW()),
   PRIMARY KEY (ID)
@@ -87,18 +87,18 @@ CREATE TABLE VISUALIZACION (
 
 
 -- INSERCIONES
-INSERT INTO USUARIO (username, correo_electronico, nombre, apellido_paterno, apellido_materno, numero_celular, foto_perfil)
+INSERT INTO USUARIO (username, password, correo_electronico, nombre, apellido_paterno, apellido_materno, foto_perfil)
 VALUES
-  ('usuario1', '2000000001@est.umss.edu', 'Juan', 'Pérez', 'González', '1234567890', 'https://randomuser.me/api/portraits/men/74.jpg'),
-  ('usuario2', '2000000002@est.umss.edu', 'María', 'García', 'López', '0987654321', 'https://randomuser.me/api/portraits/women/74.jpg'),
-  ('usuario3', '2000000003@est.umss.edu', 'Carlos', 'Martínez', NULL, '9876543210', 'https://randomuser.me/api/portraits/men/30.jpg'),
-  ('usuario4', '2000000004@est.umss.edu', 'Laura', 'Fernández', 'Sánchez', '9833543210', 'https://randomuser.me/api/portraits/women/30.jpg'),
-  ('usuario5', '2000000005@est.umss.edu', 'Pedro', 'Díaz', 'Gómez', '5555555555', 'https://randomuser.me/api/portraits/men/31.jpg'),
-  ('usuario6', '2000000006@est.umss.edu', 'Ana', 'Rodríguez', 'Hernández', '6666666666', 'https://randomuser.me/api/portraits/women/30.jpg'),
-  ('usuario7', '2000000007@est.umss.edu', 'Miguel', 'López', NULL, '7777777777', 'https://randomuser.me/api/portraits/men/2.jpg'),
-  ('usuario8', '2000000008@est.umss.edu', 'Sofía', 'Pérez', 'Martínez', '98765432131', 'https://randomuser.me/api/portraits/women/2.jpg'),
-  ('usuario9', '2000000009@est.umss.edu', 'Javier', 'Gómez', NULL, '8888888888', 'https://randomuser.me/api/portraits/men/10.jpg'),
-  ('usuario10', '2000000010@est.umss.edu', 'Elena', 'Sánchez', 'Martínez', '9999999999', 'https://randomuser.me/api/portraits/women/10.jpg');
+  ('usuario1', 'pass1', '2000000001@est.umss.edu', 'Juan', 'Pérez', 'González', 'https://randomuser.me/api/portraits/men/74.jpg'),
+  ('usuario2', 'pass2', '2000000002@est.umss.edu', 'María', 'García', 'López', 'https://randomuser.me/api/portraits/women/74.jpg'),
+  ('usuario3', 'pass3', '2000000003@est.umss.edu', 'Carlos', 'Martínez', NULL, 'https://randomuser.me/api/portraits/men/30.jpg'),
+  ('usuario4', 'pass4', '2000000004@est.umss.edu', 'Laura', 'Fernández', 'Sánchez', 'https://randomuser.me/api/portraits/women/30.jpg'),
+  ('usuario5', 'pass5', '2000000005@est.umss.edu', 'Pedro', 'Díaz', 'Gómez', 'https://randomuser.me/api/portraits/men/31.jpg'),
+  ('usuario6', 'pass6', '2000000006@est.umss.edu', 'Ana', 'Rodríguez', 'Hernández', 'https://randomuser.me/api/portraits/women/30.jpg'),
+  ('usuario7', 'pass7', '2000000007@est.umss.edu', 'Miguel', 'López', NULL, 'https://randomuser.me/api/portraits/men/2.jpg'),
+  ('usuario8', 'pass8', '2000000008@est.umss.edu', 'Sofía', 'Pérez', 'Martínez', 'https://randomuser.me/api/portraits/women/2.jpg'),
+  ('usuario9', 'pass9', '2000000009@est.umss.edu', 'Javier', 'Gómez', NULL, 'https://randomuser.me/api/portraits/men/10.jpg'),
+  ('usuario10', 'pass10', '2000000010@est.umss.edu', 'Elena', 'Sánchez', 'Martínez', 'https://randomuser.me/api/portraits/women/10.jpg');
 
 INSERT INTO CATEGORIA (nombre) VALUES
   ('Matemáticas'),
