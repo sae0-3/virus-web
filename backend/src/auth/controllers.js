@@ -22,19 +22,19 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { username, password } = req.body
-    const result = await loginUser(username, password)
+    const { status, id } = await loginUser(username, password)
 
-    if (result === 1) {
+    if (status === 1) {
       return res.status(404).send({
         message: 'El usuario no existe'
       })
-    } else if (result === 2) {
+    } else if (status === 2) {
       return res.status(401).send({
         message: 'La contraseña y el usuario no coinciden'
       })
     }
 
-    const token = jwt.sign({ username },
+    const token = jwt.sign({ id, username },
       process.env.APPLICATION_SECRETKEY,
       { expiresIn: '100000000' })
 
