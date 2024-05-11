@@ -12,7 +12,7 @@ export const register = async (req, res) => {
       id: userID
     })
   } catch (err) {
-    res.status(500).send({
+    res.status(400).send({
       message: 'Error al crear el Usuario',
       id: -1
     })
