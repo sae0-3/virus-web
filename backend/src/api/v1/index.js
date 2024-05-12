@@ -3,8 +3,7 @@
 import cors from 'cors'
 import Server from '../../configs/server.js'
 import topicRouter from './routes/topic.js'
-import validateToken from '../../auth/validateToken.js'
-
+import { validateToken } from './helpers/utilities.js'
 
 
 class ServerApiV1 extends Server {

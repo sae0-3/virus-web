@@ -1,9 +1,10 @@
 'use strict'
 
 import jwt from 'jsonwebtoken'
+import { jwtDecode } from "jwt-decode"
 
 
-const validateToken = (req, res, next) => {
+export const validateToken = (req, res, next) => {
   const headerToken = req.headers.authorization
 
   if (!headerToken || !headerToken.startsWith('Bearer')) {
@@ -23,4 +24,4 @@ const validateToken = (req, res, next) => {
   }
 }
 
-export default validateToken
+export const getPayloadToken = (token) => jwtDecode(token)

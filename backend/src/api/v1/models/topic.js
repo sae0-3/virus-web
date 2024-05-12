@@ -64,13 +64,13 @@ export default class TopicModel {
       data.comments = comments
       return data
     } catch (err) {
-      throw new Error(`Error al obtener el tema con id ${id}: ${err}`)
+      throw new Error(`Error al obtener el tema con id ${id}`)
     }
   }
 
   static async getAll() {
     try {
-      const query =`
+      const query = `
       SELECT
         t.ID AS id,
         titulo AS title,
@@ -101,7 +101,7 @@ export default class TopicModel {
       GROUP BY id, title, created_at, active`
 
       const [rows, _] = await conn.execute(query)
-      const data = rows.map(({ author, participants, ...vls  }) => {
+      const data = rows.map(({ author, participants, ...vls }) => {
         return {
           author: JSON.parse(author),
           participants: JSON.parse(participants),
@@ -110,7 +110,39 @@ export default class TopicModel {
       })
       return data
     } catch (err) {
-      throw new Error(`Error al obtener los temas: ${err}`)
+      throw new Error(`Error al obtener los temas`)
     }
+  }
+
+  static async create(user_id, title, data) {
+    try {
+      const [{ insertId }] = await conn.execute('INSERT INTO `CONTENIDO`\
+        (`ID_usuario`, `descripcion`) VALUES (?, ?)', [user_id, data])
+      await conn.execute('INSERT INTO `TEMA` (`ID`, `titulo`) VALUES (?, ?)',
+        [insertId, title])
+      return insertId
+    } catch (err) {
+      throw new Error(`Error al crear el tema`)
+    }
+  }
+
+  static async remove(id_user, id_topic) {
+    const [row] = await conn.execute('SELECT `ID` FROM TEMA WHERE ID = ?',
+      [id_topic])
+
+    if (!row.length) {
+      throw new Error(`El tema con id ${id_topic} no existe`)
+    }
+
+    const [result] = await conn.execute('SELECT `ID` FROM `CONTENIDO`\
+      WHERE ID = ? AND ID_usuario = ?', [id_topic, id_user])
+
+    if (!result.length) {
+      throw new Error(`El usuario con id ${id_user} no puede eliminar el tema`)
+    }
+
+    await conn.execute('DELETE FROM `TEMA` WHERE ID = ?', [id_topic])
+    await conn.execute('DELETE FROM `CONTENIDO` WHERE ID = ? AND ID_usuario = ?',
+      [id_topic, id_user])
   }
 }
