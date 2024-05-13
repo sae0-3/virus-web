@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar Sesión con Google</title>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<!-- Establece el ID del cliente proporcionado por Google -->
+<meta name="google-signin-client_id" content="TU_ID_DE_CLIENTE.apps.googleusercontent.com">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        text-align: center;
+        margin-top: 100px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Inicia Sesión con Google</h2>
+    <!-- Botón de inicio de sesión con Google -->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+</div>
+<script>
+// Función que se ejecuta cuando el usuario inicia sesión con Google
+function onSignIn(googleUser) {
+    // Obtiene la información del perfil del usuario
+    var profile = googleUser.getBasicProfile();
+    var email = profile.getEmail();
+
+    // Verifica si el correo electrónico tiene el dominio institucional permitido
+    if (email.endsWith('@@est.umss.edu')) {
+        // Correo electrónico válido, continua con el inicio de sesión
+        var nombre = profile.getGivenName();
+        var apellidos = profile.getFamilyName();
+
+        // Aquí puedes enviar los datos a tu servidor para manejar el inicio de sesión
+        console.log("Nombre: " + nombre);
+        console.log("Apellidos: " + apellidos);
+        console.log("Email: " + email);
+
+        // También puedes redirigir al usuario a otra página o realizar otras acciones después del inicio de sesión
+    } else {
+        // Correo electrónico no válido, muestra un mensaje de error
+        alert('Solo se permiten correos electrónicos institucionales.');
+        // Desconecta al usuario de la sesión de Google
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('Usuario desconectado.');
+        });
+    }
+}
+</script>
+</body>
+</html>
