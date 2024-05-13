@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+//Cesar Luis Ibañez Bellido
+int main() {
+    char nombre[50], apellidos[50], contrasena[50], confirmar_contrasena[50];
+    char correo_telefono;
+    int tiene_mayuscula = 0, tiene_minuscula = 0, tiene_numero = 0, tiene_especial = 0, tiene_espacios = 0;
+    
+    printf("Si ya tienes una cuenta da clic aquí para Iniciar Sesión\n\n");
+
+    // Solicitar datos de usuario
+    printf("Nombre: ");
+    scanf("%s", nombre);
+    printf("Apellidos: ");
+    scanf("%s", apellidos);
+    printf("Contraseña: ");
+    scanf("%s", contrasena);
+    printf("Confirmar Contraseña: ");
+    scanf("%s", confirmar_contrasena);
+
+    // Verificar requisitos de contraseña
+    if (strlen(contrasena) < 8) {
+        printf("Tu contraseña debe tener al menos 8 caracteres.\n");
+        return 1;
+    }
+
+    for (int i = 0; i < strlen(contrasena); i++) {
+        if (isupper(contrasena[i])) tiene_mayuscula = 1;
+        if (islower(contrasena[i])) tiene_minuscula = 1;
+        if (isdigit(contrasena[i])) tiene_numero = 1;
+        if (!isalnum(contrasena[i])) tiene_especial = 1;
+        if (isspace(contrasena[i])) tiene_espacios = 1;
+    }
+
+    if (!tiene_mayuscula || !tiene_minuscula || !tiene_numero || !tiene_especial || tiene_espacios) {
+        printf("Tu contraseña no cumple con los requisitos:\n");
+        printf("- Debe incluir al menos una letra mayúscula\n");
+        printf("- Debe incluir al menos una letra minúscula\n");
+        printf("- Debe incluir al menos un número\n");
+        printf("- Debe incluir al menos un carácter especial\n");
+        printf("- Debe evitar espacios\n");
+        return 1;
+    }
+
+    // Solicitar método de contacto y su respectiva información
+    printf("Selecciona una opción (Escribe 'C' para Correo Electronico o 'T' para Teléfono): ");
+    scanf(" %c", &correo_telefono);
+
+    if (correo_telefono == 'C' || correo_telefono == 'c') {
+        char correo[100];
+        printf("Correo Electronico: ");
+        scanf("%s", correo);
+        printf("Gracias por registrarte con el correo: %s\n", correo);
+    } else if (correo_telefono == 'T' || correo_telefono == 't') {
+        char telefono[15];
+        printf("Teléfono: ");
+        scanf("%s", telefono);
+        printf("Gracias por registrarte con el teléfono: %s\n", telefono);
+    } else {
+        printf("Opción no válida.\n");
+        return 1;
+    }
+
+    printf("Registro completado exitosamente.\n");
+
+    return 0;
+}
