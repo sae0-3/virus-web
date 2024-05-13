@@ -1,6 +1,7 @@
-import { ArticleForum } from '../components/ArticleForum'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { ArticleForum } from '../components/ArticleForum'
 import '../styles/Forum.css'
 
 
@@ -11,12 +12,12 @@ export const Forum = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(URL_API)
-        if (!response.ok) {
-          throw new Error('Network response was not ok')
-        }
-        const jsonData = await response.json()
-        setData(jsonData)
+        const { data } = await axios.get(URL_API, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+        setData(data)
       } catch (error) {
         console.error('There was a problem with your fetch operation:', error)
       }

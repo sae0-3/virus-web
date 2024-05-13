@@ -1,6 +1,9 @@
 .header-main {
+  align-items: center;
   background-color: var(--black);
   color: var(--white);
+  display: flex;
+  height: 12vh;
   padding: .8rem 0;
 
   position: sticky;

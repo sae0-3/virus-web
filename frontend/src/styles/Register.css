@@ -1,0 +1,26 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+}
+
+.register-subcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  margin-top: 8vh;
+}
+
+.register-subcontainer h2 {
+  font-size: 3.2rem;
+}
+
+.register-subcontainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.register-subcontainer form .btn {
+  margin-top: 2rem;
+  font-size: 1.6rem;
+}

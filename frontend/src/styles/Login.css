@@ -1,0 +1,39 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.login-subcontainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-top: 18vh;
+  width: 80%;
+}
+
+.login-subcontainer h2 {
+  font-size: 3.2rem;
+}
+
+.login-subcontainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.login-subcontainer form label {
+  font-size: 1.2rem;
+}
+
+.login-subcontainer form .btn {
+  font-size: 1.6rem;
+}
+
+.login-subcontainer .login-btns {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}

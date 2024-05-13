@@ -1,5 +1,6 @@
-import { CardTopic } from '../components/CardTopic'
+import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { CardTopic } from '../components/CardTopic'
 import '../styles/ForumTopic.css'
 
 
@@ -11,12 +12,12 @@ export const ForumTopic = () => {
     const fetchData = async () => {
       try {
         const idx = location.pathname.split('/').pop()
-        const response = await fetch(`${URL_API}/${idx}`)
-        if (!response.ok) {
-          throw new Error('Network response was not ok')
-        }
-        const jsonData = await response.json()
-        setData(jsonData)
+        const { data } = await axios.get(`${URL_API}/${idx}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+        setData(data)
       } catch (error) {
         console.error('There was a problem with your fetch operation:', error)
       }

@@ -61,8 +61,8 @@ export const Header = () => {
         </section>
         <section className='offcanvas-footer'>
           <div>
-            <Link to='#' className='btn btn-outline-primary'>Iniciar Sesión</Link>
-            <Link to='#' className='btn btn-outline-warning'>Registrarse</Link>
+            <Link to='/iniciar-sesion' className='btn btn-outline-primary'>Iniciar Sesión</Link>
+            <Link to='/registrarse' className='btn btn-outline-warning'>Registrarse</Link>
           </div>
         </section>
       </div>
