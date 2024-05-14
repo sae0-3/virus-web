@@ -6,7 +6,7 @@ import '../styles/Forum.css'
 
 
 export const Forum = () => {
-  const [data, setData] = useState(null)
+  const [data, setData] = useState({ status: 102 })
   const URL_API = 'http://localhost:8080/api/v1/topics'
 
   useEffect(() => {
@@ -17,9 +17,10 @@ export const Forum = () => {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         })
+        data.status = 200
         setData(data)
       } catch (error) {
-        console.error('There was a problem with your fetch operation:', error)
+        setData({ status: 404 })
       }
     }
 
@@ -111,22 +112,26 @@ export const Forum = () => {
       </nav>
 
       <section className='articles'>
-        { data
-          ? (
-            <>
-              {data.map(({ id, title, created_at, comments, views, active, author, participants }) => (
-                <ArticleForum
-                  key={id}
-                  id={id}
-                  title={title}
-                  created_at={created_at}
-                  comments={comments}
-                  views={views}
-                  active={active}
-                  author={author}
-                  participants={participants} />))}
-            </>
-          ) : (<p>Cargando...</p>)}
+        { data.status !== 404
+          ? data.status === 200
+            ? <>
+                {data.map(({ id, title, created_at, comments, views, active,
+                                author, participants }) =>
+                  <ArticleForum
+                    key={id}
+                    id={id}
+                    title={title}
+                    created_at={created_at}
+                    comments={comments}
+                    views={views}
+                    active={active}
+                    author={author}
+                    participants={participants} />
+                )}
+              </>
+            : <p className='text-center'>Cargando...</p>
+          : <h3 className='text-center'>No hay temas para mostrar</h3>
+        }
       </section>
     </div>
   )
