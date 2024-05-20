@@ -1,31 +1,12 @@
-import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
 import { ArticleForum } from '../components/ArticleForum'
+import { useFetchGet } from '../hooks/useFetch'
 import '../styles/Forum.css'
 
 
 export const Forum = () => {
-  const [data, setData] = useState({ status: 102 })
-  const URL_API = 'http://localhost:8080/api/v1/topics'
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get(URL_API, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-        data.status = 200
-        setData(data)
-      } catch (error) {
-        setData({ status: 404 })
-      }
-    }
-
-    fetchData()
-  }, [])
+  const { error, data, isLoading } = useFetchGet('http://localhost:8080/api/v1/topics',
+    { Authorization: `Bearer ${ localStorage.getItem('token') }` })
 
   return (
     <div className='container forum'>
@@ -112,26 +93,25 @@ export const Forum = () => {
       </nav>
 
       <section className='articles'>
-        { data.status !== 404
-          ? data.status === 200
-            ? <>
-                {data.map(({ id, title, created_at, comments, views, active,
-                                author, participants }) =>
+        {isLoading ? (
+          <h4 className='text-center'>Cargando...</h4>
+        ) : error ? (
+          <h3 className='text-center'>{ error }</h3>
+        ) : (
+          data && data.map(({ id, title, created_at, comments, views,
+                active, author, participants }) => (
                   <ArticleForum
-                    key={id}
-                    id={id}
-                    title={title}
-                    created_at={created_at}
-                    comments={comments}
-                    views={views}
-                    active={active}
-                    author={author}
-                    participants={participants} />
-                )}
-              </>
-            : <p className='text-center'>Cargando...</p>
-          : <h3 className='text-center'>No hay temas para mostrar</h3>
-        }
+                  key={id}
+                  id={id}
+                  title={title}
+                  created_at={created_at}
+                  comments={comments}
+                  views={views}
+                  active={active}
+                  author={author}
+                  participants={participants} />
+          ))
+        )}
       </section>
     </div>
   )

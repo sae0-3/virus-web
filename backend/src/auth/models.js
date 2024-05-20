@@ -8,7 +8,8 @@ export const createUser = async (user) => {
   user.password = await bcrypt.hash(user.password, 7)
   const query = 'INSERT INTO `USUARIO` (`username`, `password`, `correo_electronico`,\
     `nombre`, `apellido_paterno`, `apellido_materno`, `foto_perfil`) VALUES (?, ?, ?, ?, ?, ?, ?)'
-  const values = Object.values(user)
+  const { username, password, mail, name, lastname, secondname, profile } = user
+  const values = [username, password, mail, name, lastname, secondname, profile]
 
   try {
     const [{ insertId }, _] = await conn.execute(query, values)
