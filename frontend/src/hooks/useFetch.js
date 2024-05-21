@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 
 
-export const useFetchGet = (url, headers = null) => {
+export const useGet = (url, headers = {}) => {
   const [error, setError] = useState(null)
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(false)
@@ -11,13 +11,14 @@ export const useFetchGet = (url, headers = null) => {
     setLoading(true)
 
     try {
-      const { data } = await axios.get(url, headers ? { headers } : { })
+      const { data } = await axios.get(url, { headers })
       setData(data)
       setError(null)
     } catch (err) {
       setData(null)
-      if (err.response) {
-        setError({ status: err.response.status, message: err.response.data.message })
+      if (!!err.response) {
+        const { response: { status, data: { message } } } = err
+        setError({ status, message })
       } else {
         setError({ status: 500, message: err.message })
       }
@@ -26,30 +27,31 @@ export const useFetchGet = (url, headers = null) => {
     }
   }
 
-  useEffect(() => { fetchData() }, [])
+  useEffect(() => { fetchData() }, [url])
 
   const refetch = () => { fetchData() }
 
-  return { error, data, isLoading, refetch }
+  return [data, error, isLoading, refetch]
 }
 
 
-export const useFetchPost = (url, headers = null) => {
+export const usePost = (url) => {
   const [error, setError] = useState(null)
   const [data, setData] = useState(null)
   const [isLoading, setLoading] = useState(false)
 
-  const fetchData = async (body) => {
+  const fetchData = async (body = {}, headers = {}) => {
     setLoading(true)
 
     try {
-      const { data } = await axios.post(url, body, headers ? { headers } : { })
+      const { data } = await axios.post(url, body, { headers })
       setData(data)
       setError(null)
     } catch (err) {
       setData(null)
       if (err.response) {
-        setError({ status: err.response.status, message: err.response.data.message })
+        const { response: { status, data: { message } } } = err
+        setError({ status, message })
       } else {
         setError({ status: 500, message: err.message })
       }
@@ -58,5 +60,5 @@ export const useFetchPost = (url, headers = null) => {
     }
   }
 
-  return { error, data, isLoading, fetchData }
+  return [fetchData, data, error, isLoading]
 }

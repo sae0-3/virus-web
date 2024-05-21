@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { useFetchPost } from '../hooks/useFetch'
+import { usePost } from '../hooks/useFetch'
+import { useForm } from '../hooks/useForm'
 import '../styles/Register.css'
 
 
@@ -16,123 +17,114 @@ const initialValues = {
 
 export const Register = () => {
   const [redirect, setRedirect] = useState(false)
-  const [formData, setFormData] = useState(initialValues)
-  const { error, data, isLoading, fetchData } = useFetchPost('http://localhost:8000/auth/register')
+  const [formData, handleInputChange] = useForm(initialValues)
+  const [fetchData, data, error, isLoading] = usePost('http://localhost:8000/auth/register')
 
   useEffect(() => {
-    if (data && !error) {
+    if (data) {
       setRedirect(true)
     }
   }, [data])
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData({
-      ...formData,
-      [name]: value
-    })
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     fetchData(formData)
   }
 
-  return redirect
-    ? (
-      <Navigate to='/iniciar-sesion' replace />
-    ) : isLoading ? (
-      <h3 className='text-center text-secondary'>Cargando...</h3>
-    ) : (
-      <div className='container register-container'>
-        <div className='register-subcontainer text-center'>
-          <h2>Registrarse</h2>
+  return redirect ? (
+    <Navigate to='/iniciar-sesion' replace />
+  ) : isLoading ? (
+    <div className='alert alert-info text-center'>Cargando...</div>
+  ) : (
+    <div className='container register-container'>
+      <div className='register-subcontainer text-center'>
+        <h2>Registrarse</h2>
 
-          <form className='form-floating' onSubmit={handleSubmit}>
-            <div className='input-group'>
-              <span className='input-group-text'>@</span>
-              <input type='text'
-                className='form-control form-control-lg'
-                id='input-register-username'
-                onChange={handleInputChange}
-                name='username'
-                value={formData.username}
-                placeholder='Username'
-                required />
-            </div>
-
-            <div className='col'>
-              <input type='password'
-                className='form-control form-control-lg'
-                id='input-register-password'
-                onChange={handleInputChange}
-                name='password'
-                value={formData.password}
-                placeholder='Password'
-                required />
-            </div>
-
-            <div className='input-group'>
-              <input type='number'
-                className='form-control form-control-lg'
-                id='input-register-mail'
-                onChange={handleInputChange}
-                name='mail'
-                value={formData.mail}
-                placeholder='Codigo SIS'
-                required />
-              <span className='input-group-text'>@est.umss.edu</span>
-            </div>
-
-            <div className='col'>
-              <input type='text'
-                className='form-control form-control-lg'
-                id='input-register-name'
-                onChange={handleInputChange}
-                name='name'
-                value={formData.name}
-                placeholder='Nombre'
-                required />
-            </div>
-
-            <div className='row'>
-              <div className='col'>
-                <input type='text'
-                  className='form-control form-control-lg'
-                  id='input-register-lastname'
-                  onChange={handleInputChange}
-                  name='lastname'
-                  value={formData.lastname}
-                  placeholder='Apellido Paterno' />
-              </div>
-              <div className='col'>
-                <input type='text'
-                  className='form-control form-control-lg'
-                  id='input-register-secondname'
-                  onChange={handleInputChange}
-                  name='secondname'
-                  value={formData.secondname}
-                  placeholder='Apellido Materno' />
-              </div>
-            </div>
-
-            <div className="col">
+        <form className='form-floating' onSubmit={handleSubmit}>
+          <div className='input-group'>
+            <span className='input-group-text'>@</span>
             <input type='text'
+              className='form-control form-control-lg'
+              id='input-register-username'
+              onChange={handleInputChange}
+              name='username'
+              value={formData.username}
+              placeholder='Username'
+              required />
+          </div>
+
+          <div className='col'>
+            <input type='password'
+              className='form-control form-control-lg'
+              id='input-register-password'
+              onChange={handleInputChange}
+              name='password'
+              value={formData.password}
+              placeholder='Password'
+              required />
+          </div>
+
+          <div className='input-group'>
+            <input type='number'
+              className='form-control form-control-lg'
+              id='input-register-mail'
+              onChange={handleInputChange}
+              name='mail'
+              value={formData.mail}
+              placeholder='Codigo SIS'
+              required />
+            <span className='input-group-text'>@est.umss.edu</span>
+          </div>
+
+          <div className='col'>
+            <input type='text'
+              className='form-control form-control-lg'
+              id='input-register-name'
+              onChange={handleInputChange}
+              name='name'
+              value={formData.name}
+              placeholder='Nombre'
+              required />
+          </div>
+
+          <div className='row'>
+            <div className='col'>
+              <input type='text'
                 className='form-control form-control-lg'
-                id='input-register-profile'
+                id='input-register-lastname'
                 onChange={handleInputChange}
-                name='profile'
-                value={formData.profile}
-                placeholder='URL - Foto Perfil' />
+                name='lastname'
+                value={formData.lastname}
+                placeholder='Apellido Paterno' />
             </div>
+            <div className='col'>
+              <input type='text'
+                className='form-control form-control-lg'
+                id='input-register-secondname'
+                onChange={handleInputChange}
+                name='secondname'
+                value={formData.secondname}
+                placeholder='Apellido Materno' />
+            </div>
+          </div>
 
-            <input className='btn btn-success' type='submit' />
-          </form>
+          <div className="col">
+          <input type='text'
+              className='form-control form-control-lg'
+              id='input-register-profile'
+              onChange={handleInputChange}
+              name='profile'
+              value={formData.profile}
+              placeholder='URL - Foto Perfil' />
+          </div>
 
-          {error && (
-            <h3 className='text-center text-danger'>{ error.message }</h3>
-          )}
-        </div>
+          <input className='btn btn-success' type='submit' />
+        </form>
+
+        {!!error && (
+          <h3 className='text-center text-danger'>{ error.message }</h3>
+        )}
       </div>
-    )
+    </div>
+  )
 }

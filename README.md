@@ -107,3 +107,6 @@ docker compose up -d
 
 #### WSL2
   * https://youtu.be/3Tkkk3ePZKo?si=VU8f3UJ_zrznv3nx
+
+#### JS
+  * https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
