@@ -1,17 +1,16 @@
-import { Routes, Route } from 'react-router-dom'
-import { Header } from './components/Header'
-import { NotMatch } from './pages/NotMatch'
-import { Notice } from './pages/Notice'
-import { Login } from './pages/Login'
-import { Register } from './pages/Register'
-import { Chat } from './pages/Chat'
-import { Forum } from './pages/Forum'
-import { ForumNewTopic } from './pages/ForumNewTopic'
-import { ForumTopic } from './pages/ForumTopic'
-import './index.css'
+import { Route, Routes } from 'react-router-dom'
+
+import { Login, Register } from '@auth/pages'
+import { Chat } from '@chat/pages'
+import { Header } from '@common/components'
+import { NotMatch } from '@common/pages'
+import { ForumList, ForumPost, ForumThread } from '@forum/pages'
+import { Notice } from '@notice/pages'
+
+import 'bootstrap-icons/font/bootstrap-icons.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
-import 'bootstrap-icons/font/bootstrap-icons.min.css'
+import './index.css'
 
 
 export const App = () => {
@@ -21,10 +20,10 @@ export const App = () => {
       <Header />
 
       <Routes>
-        <Route index element={<Forum />} />
-        <Route path='temas' element={<Forum />} />
-        <Route path='tema/:id' element={<ForumTopic />} />
-        <Route path='nuevo-tema' element={<ForumNewTopic />} />
+        <Route index element={<ForumList />} />
+        <Route path='temas' element={<ForumList />} />
+        <Route path='tema/:id' element={<ForumThread />} />
+        <Route path='nuevo-tema' element={<ForumPost />} />
 
         <Route path='anuncios' element={<Notice />} />
         <Route path='chat' element={<Chat />} />

@@ -97,6 +97,7 @@ docker compose up -d
 ## RECURSOS FRONTEND - BACKEND
 * https://discuss.jsonapi.org/
 * https://forum.codeselfstudy.com/
+* https://medium.com/@mubashirhussain29/the-screaming-architecture-story-08750691291f
 
 #### MARKDOWN
   * https://commonmark.org/

@@ -7,3 +7,5 @@
   * https://onur.dev/writing/useFetch-react-hook
   * https://www.freecodecamp.org/espanol/news/como-usar-axios-con-react/
   * https://stackoverflow.com/questions/66692085/better-way-of-handling-form-data-via-react-usestate
+  * https://salteadorneo.dev/blog/alias-rutas-vite
+  * https://stackoverflow.com/questions/62725131/how-to-export-all-components-in-index-js
