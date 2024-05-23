@@ -1,8 +1,19 @@
+import { useUser } from '@auth/hooks'
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './styles/Header.css'
 
 
 export const Header = () => {
+  const [{ isAuthenticated }, setUser] = useUser()
+  const offcanvas = useRef()
+
+  const handleClick = () => {
+    // PROVOCA RECARGA DE COMPONENTES
+    // const bsOffcanvas = new bootstrap(offcanvas.current)
+    // bsOffcanvas.hide()
+  }
+
   return (
     <>
       <header className='header-main'>
@@ -20,7 +31,7 @@ export const Header = () => {
         </nav>
       </header>
 
-      <div
+      <div ref={offcanvas}
         className='offcanvas offcanvas-start offcanvasHeader'
         data-bs-scroll='true'
         tabIndex='-1'
@@ -38,6 +49,7 @@ export const Header = () => {
           <ul className='list-group list-group-flush justify-content-center'>
             <li className='list-group-item'>
               <Link to='/'
+                onClick={handleClick}
                 className='link-body-emphasis
                             link-offset-2
                             link-underline-opacity-25
@@ -45,6 +57,7 @@ export const Header = () => {
               >Foro</Link></li>
             <li className='list-group-item'>
               <Link to='/anuncios'
+                onClick={handleClick}
                 className='link-body-emphasis
                               link-offset-2
                               link-underline-opacity-25
@@ -52,6 +65,7 @@ export const Header = () => {
               >Anuncios</Link></li>
             <li className='list-group-item'>
               <Link to='/chat'
+                onClick={handleClick}
                 className='link-body-emphasis
                               link-offset-2
                               link-underline-opacity-25
@@ -61,8 +75,20 @@ export const Header = () => {
         </section>
         <section className='offcanvas-footer'>
           <div>
-            <Link to='/iniciar-sesion' className='btn btn-outline-primary'>Iniciar Sesión</Link>
-            <Link to='/registrarse' className='btn btn-outline-warning'>Registrarse</Link>
+            <Link to={isAuthenticated ? '/perfil' : '/iniciar-sesion'}
+              onClick={handleClick}
+              className='btn btn-outline-primary'
+            >{isAuthenticated ? 'Ver Perfil' : 'Iniciar Sesión'}</Link>
+            <Link to={isAuthenticated ? '/iniciar-sesion' : '/registrarse'}
+              onClick={() => {
+                if (isAuthenticated) {
+                  localStorage.removeItem('token')
+                  setUser({ isAuthenticated: false })
+                }
+                handleClick()
+              }}
+              className='btn btn-outline-warning'
+            >{isAuthenticated ? 'Cerrar Sesión' : 'Registrarse'}</Link>
           </div>
         </section>
       </div>

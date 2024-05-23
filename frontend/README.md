@@ -9,3 +9,5 @@
   * https://stackoverflow.com/questions/66692085/better-way-of-handling-form-data-via-react-usestate
   * https://salteadorneo.dev/blog/alias-rutas-vite
   * https://stackoverflow.com/questions/62725131/how-to-export-all-components-in-index-js
+  * https://www.robinwieruch.de/react-router-private-routes/
+  * https://ahmedfaheemmalick.medium.com/understanding-reacts-usecontext-hook-a-human-friendly-guide-17c5b38fef53

@@ -1,3 +1,4 @@
+import { Loading } from '@common/components'
 import { useGet } from '@common/hooks'
 import { ArticleForum } from '@forum/components'
 import { Link } from 'react-router-dom'
@@ -17,7 +18,7 @@ export const ForumList = () => {
 
       <section className='articles'>
         {isLoading ? (
-          <div className='alert alert-info text-center'>Cargando...</div>
+          <Loading />
         ) : error ? (
           <h3 className='text-center'>{ error.message }</h3>
         ) : !!data && data.length === 0 ? (

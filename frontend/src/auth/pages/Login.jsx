@@ -1,3 +1,4 @@
+import { Loading } from '@common/components'
 import { useForm, usePost } from '@common/hooks'
 import { useEffect, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
@@ -29,7 +30,7 @@ export const Login = () => {
   return redirect ? (
     <Navigate to='/' replace />
   ) : isLoading ? (
-    <div className='alert alert-info text-center'>Cargando...</div>
+    <Loading />
   ) : (
     <div className='container login-container'>
       <div className='login-subcontainer text-center'>

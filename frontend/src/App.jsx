@@ -1,6 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 
+import { ProtectedRoute } from '@auth/components'
 import { Login, Register } from '@auth/pages'
+import { UserProvider } from '@auth/providers'
 import { Chat } from '@chat/pages'
 import { Header } from '@common/components'
 import { NotMatch } from '@common/pages'
@@ -14,25 +16,26 @@ import './index.css'
 
 
 export const App = () => {
-
   return (
-    <>
+    <UserProvider>
       <Header />
 
       <Routes>
-        <Route index element={<ForumList />} />
-        <Route path='temas' element={<ForumList />} />
-        <Route path='tema/:id' element={<ForumThread />} />
-        <Route path='nuevo-tema' element={<ForumPost />} />
+        <Route element={ <ProtectedRoute /> }>
+          <Route index element={<ForumList />} />
+          <Route path='temas' element={<ForumList />} />
+          <Route path='tema/:id' element={<ForumThread />} />
+          <Route path='nuevo-tema' element={<ForumPost />} />
 
-        <Route path='anuncios' element={<Notice />} />
-        <Route path='chat' element={<Chat />} />
+          <Route path='anuncios' element={<Notice />} />
+          <Route path='chat' element={<Chat />} />
+
+          <Route path='*' element={<NotMatch />} />
+        </Route>
 
         <Route path='iniciar-sesion' element={<Login />} />
         <Route path='registrarse' element={<Register />} />
-
-        <Route path='*' element={<NotMatch />} />
       </Routes>
-    </>
+    </UserProvider>
   )
 }

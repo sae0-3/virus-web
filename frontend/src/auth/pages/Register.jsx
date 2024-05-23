@@ -1,3 +1,4 @@
+import { Loading } from '@common/components'
 import { useForm, usePost } from '@common/hooks'
 import { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
@@ -33,7 +34,7 @@ export const Register = () => {
   return redirect ? (
     <Navigate to='/iniciar-sesion' replace />
   ) : isLoading ? (
-    <div className='alert alert-info text-center'>Cargando...</div>
+    <Loading />
   ) : (
     <div className='container register-container'>
       <div className='register-subcontainer text-center'>

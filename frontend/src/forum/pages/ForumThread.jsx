@@ -1,3 +1,4 @@
+import { Loading } from '@common/components'
 import { useGet } from '@common/hooks'
 import { NotMatch } from '@common/pages'
 import { CardTopic } from '@forum/components'
@@ -20,7 +21,7 @@ export const ForumThread = () => {
     categories } = !!data && data
 
   return isLoading ? (
-    <div className='alert alert-info text-center'>Cargando...</div>
+    <Loading />
   ) : error ? (
     <NotMatch />
   ) : (!!data &&
