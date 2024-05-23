@@ -1,42 +1,41 @@
+import { Loading } from '@common/components'
+import { usePost } from '@common/hooks'
 import MDEditor, { commands } from '@uiw/react-md-editor'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import './styles/ForumPost.css'
 
 
 export const ForumPost = () => {
-  const [value, setValue] = useState('')
-  const [categorias, setCategorias] = useState([])
-  const [nuevaCategoria, setNuevaCategoria] = useState('')
+  const [data, setData] = useState('')
+  const navigate = useNavigate()
+  const [fetchData, response, error, isLoading] = usePost(
+    'http://localhost:8080/api/v1/topics/create')
 
-  const handlePrevent = (e) => {
+  useEffect(() => {
+    if (!!response && !error) {
+      navigate(`/tema/${response.id}`)
+    }
+  }, [response])
+
+  const handleSubmit = (e) => {
     e.preventDefault()
-  }
+    const title = document.getElementById('titleTopicForumLabel').value
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter' || e.key === 'Tab') {
-      handlePrevent(e)
-      agregarCategoria()
-    }
-  }
-
-  const agregarCategoria = () => {
-    const categoria = nuevaCategoria.trim()
-    if (categoria && !categorias.includes(categoria)) {
-      setCategorias([...categorias, categoria])
-      setNuevaCategoria('')
-    }
-  }
-
-  const handleInputChange = (e) => {
-    setNuevaCategoria(e.target.value)
+    fetchData(
+      { title, data }, 
+      { Authorization: `Bearer ${localStorage.getItem('token')}`}
+    )
   }
 
   return (
     <div className='container forumNewTopic'>
       <h3 className='forumNewTopic-title'>Nuevo Tema</h3>
 
-      <form className='addTopic'>
+      {isLoading && <Loading />}
+      {error && <p className='text-center text-danger'>Error: {error.message}</p>}
+
+      <form className='addTopic' onSubmit={handleSubmit}>
         <input
           autoComplete='off'
           type='text'
@@ -46,34 +45,12 @@ export const ForumPost = () => {
           required
         />
 
-        <div className='forumNewTopic-categories'>
-          <input
-            aria-autocomplete='list'
-            autoComplete='off'
-            type='text'
-            className='form-control'
-            id='categorias'
-            placeholder='Categorias'
-            value={nuevaCategoria}
-            onChange={handleInputChange}
-            onKeyPress={handleKeyPress}
-            onKeyDown={handleKeyPress}
-          />
-          <div id='categorias-seleccionadas'>
-            {categorias.map((categoria, index) => (
-              <span key={index} className='badge badge-primary m-2'>
-                {categoria}
-              </span>
-            ))}
-          </div>
-        </div>
-
         <MDEditor
-          value={value}
+          value={data}
           preview='edit'
           // commands={[]}
           // extraCommands={[]}
-          onChange={(val) => setValue(val)}/>
+          onChange={(val) => setData(val)}/>
 
         <div className='forumNewTopic-btns'>
           <Link to='/' className='btn btn-danger'>
