@@ -15,6 +15,7 @@ const validateToken = async () => {
 
     return {
       ...data,
+      token,
       isAuthenticated: true
     }
   } catch (error) {

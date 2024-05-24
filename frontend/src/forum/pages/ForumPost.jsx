@@ -1,15 +1,14 @@
-import { Loading } from '@common/components'
 import { usePost } from '@common/hooks'
 import MDEditor, { commands } from '@uiw/react-md-editor'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import './styles/ForumPost.css'
+import '@forum/styles/ForumPost.css'
 
 
 export const ForumPost = () => {
   const [data, setData] = useState('')
   const navigate = useNavigate()
-  const [fetchData, response, error, isLoading] = usePost(
+  const [fetchData, response, error] = usePost(
     'http://localhost:8080/api/v1/topics/create')
 
   useEffect(() => {
@@ -32,7 +31,6 @@ export const ForumPost = () => {
     <div className='container forumNewTopic'>
       <h3 className='forumNewTopic-title'>Nuevo Tema</h3>
 
-      {isLoading && <Loading />}
       {error && <p className='text-center text-danger'>Error: {error.message}</p>}
 
       <form className='addTopic' onSubmit={handleSubmit}>
