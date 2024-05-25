@@ -1,7 +1,7 @@
 'use strict'
 
 import { Router } from 'express'
-import { validateToken } from '../../auth/middlewares/index.js'
+import { validate } from '../../auth/middlewares/index.js'
 import {
   deleteTopic,
   getTopicAll,
@@ -17,7 +17,7 @@ topicRouter.get('/:id', getTopicById)
 topicRouter.get('/', getTopicAll)
 
 
-topicRouter.use(validateToken)
+topicRouter.use(validate)
 
 
 topicRouter.post('/', postTopic)

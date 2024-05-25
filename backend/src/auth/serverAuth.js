@@ -2,9 +2,8 @@
 
 import cors from 'cors'
 import Server from '../core/configs/server.js'
-import { login } from './controllers/index.js'
-import { getPayloadToken } from './helpers/index.js'
-import { validateToken } from './middlewares/index.js'
+import { login, verify } from './controllers/index.js'
+import { validate } from './middlewares/index.js'
 
 
 export default class ServerAuth extends Server {
@@ -17,10 +16,6 @@ export default class ServerAuth extends Server {
 
   routes() {
     this.app.use('/auth/login', login)
-    this.app.use('/auth/verify', validateToken, (req, res) => {
-      const token = req.headers.authorization.split(' ').pop()
-      const { id, username } = getPayloadToken(token)
-      res.status(200).send({ id, username, token })
-    })
+    this.app.use('/auth/verify', validate, verify)
   }
 }

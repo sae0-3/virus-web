@@ -1,9 +1,9 @@
 'use strict'
 
-import jwt from 'jsonwebtoken'
+import { validateToken } from '../helpers/index.js'
 
 
-const validateToken = (req, res, next) => {
+const validate = (req, res, next) => {
   const headerToken = req.headers.authorization
 
   if (!headerToken || !headerToken.startsWith('Bearer')) {
@@ -12,15 +12,15 @@ const validateToken = (req, res, next) => {
     })
   }
 
-  try {
-    const bearerToken = headerToken.split(' ').pop()
-    jwt.verify(bearerToken, process.env.APPLICATION_SECRETKEY)
+  const userInfo = validateToken(headerToken.split(' ').pop())
+
+  if (!!userInfo) {
     next()
-  } catch (err) {
+  } else {
     res.status(401).send({
       message: 'Token no valido'
     })
   }
 }
 
-export default validateToken
+export default validate
