@@ -3,180 +3,119 @@ CREATE DATABASE sansi_web;
 USE sansi_web;
 
 
-CREATE TABLE USUARIO (
+CREATE TABLE USER (
   ID INT NOT NULL AUTO_INCREMENT,
   username VARCHAR(50) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
-  correo_electronico CHAR(23) NOT NULL UNIQUE,
-  nombre VARCHAR(50) NOT NULL,
-  apellido_paterno VARCHAR(30),
-  apellido_materno VARCHAR(30),
-  foto_perfil VARCHAR(255) NOT NULL,
-  fecha_creacion TIMESTAMP NOT NULL DEFAULT (NOW()),
+  mail CHAR(23) NOT NULL UNIQUE,
+  name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(30),
+  second_name VARCHAR(30),
+  profile VARCHAR(255),
+  created_at TIMESTAMP NOT NULL DEFAULT (NOW()),
   PRIMARY KEY (ID)
 );
 
-CREATE TABLE CATEGORIA (
+CREATE TABLE CATEGORY (
   ID INT NOT NULL AUTO_INCREMENT,
-  nombre VARCHAR(50) NOT NULL,
+  name VARCHAR(50) NOT NULL,
   PRIMARY KEY (ID)
 );
 
-CREATE TABLE CONTENIDO (
+CREATE TABLE CONTENT (
   ID INT NOT NULL AUTO_INCREMENT,
-  ID_usuario INT NOT NULL,
-  descripcion TEXT NOT NULL,
-  fecha_publicacion TIMESTAMP NOT NULL DEFAULT (NOW()),
+  ID_user INT NOT NULL,
+  description TEXT NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT (NOW()),
   PRIMARY KEY (ID),
-  FOREIGN KEY (ID_usuario) REFERENCES USUARIO(ID)
+  FOREIGN KEY (ID_user) REFERENCES USER(ID)
 );
 
-CREATE TABLE TEMA (
+CREATE TABLE TOPIC (
   ID INT NOT NULL,
-  titulo VARCHAR(200) NOT NULL,
-  activo BOOLEAN NOT NULL DEFAULT 1,
+  title VARCHAR(200) NOT NULL,
+  active BOOLEAN NOT NULL DEFAULT 1,
   PRIMARY KEY (ID),
-  FOREIGN KEY (ID) REFERENCES CONTENIDO(ID)
+  FOREIGN KEY (ID) REFERENCES CONTENT(ID)
 );
 
-CREATE TABLE COMENTARIO (
+CREATE TABLE COMMENT (
   ID INT NOT NULL,
-  ID_tema INT NOT NULL,
-  destacado BOOLEAN NOT NULL DEFAULT 0,
+  ID_topic INT NOT NULL,
+  salient BOOLEAN NOT NULL DEFAULT 0,
   PRIMARY KEY (ID),
-  FOREIGN KEY (ID) REFERENCES CONTENIDO(ID),
-  FOREIGN KEY (ID_tema) REFERENCES TEMA(ID)
+  FOREIGN KEY (ID) REFERENCES CONTENT(ID),
+  FOREIGN KEY (ID_topic) REFERENCES TOPIC(ID)
 );
 
-CREATE TABLE ME_INTERESA (
-  ID_contenido INT NOT NULL,
-  ID_usuario INT NOT NULL,
-  fecha TIMESTAMP NOT NULL DEFAULT (NOW()),
-  PRIMARY KEY (ID_contenido, ID_usuario),
-  FOREIGN KEY (ID_contenido) REFERENCES CONTENIDO(ID),
-  FOREIGN KEY (ID_usuario) REFERENCES USUARIO(ID)
+CREATE TABLE INTERESTE (
+  ID_content INT NOT NULL,
+  ID_user INT NOT NULL,
+  date TIMESTAMP NOT NULL DEFAULT (NOW()),
+  PRIMARY KEY (ID_content, ID_user),
+  FOREIGN KEY (ID_content) REFERENCES CONTENT(ID),
+  FOREIGN KEY (ID_user) REFERENCES USER(ID)
 );
 
-CREATE TABLE GUARDADO (
-  ID_contenido INT NOT NULL,
-  ID_usuario INT NOT NULL,
-  fecha TIMESTAMP NOT NULL DEFAULT (NOW()),
-  PRIMARY KEY (ID_contenido, ID_usuario),
-  FOREIGN KEY (ID_contenido) REFERENCES CONTENIDO(ID),
-  FOREIGN KEY (ID_usuario) REFERENCES USUARIO(ID)
+CREATE TABLE SAVE (
+  ID_content INT NOT NULL,
+  ID_user INT NOT NULL,
+  date TIMESTAMP NOT NULL DEFAULT (NOW()),
+  PRIMARY KEY (ID_content, ID_user),
+  FOREIGN KEY (ID_content) REFERENCES CONTENT(ID),
+  FOREIGN KEY (ID_user) REFERENCES USER(ID)
 );
 
-CREATE TABLE R_TEMA_CATEGORIA (
-  ID_tema INT NOT NULL,
-  ID_categoria INT NOT NULL,
-  PRIMARY KEY (ID_tema, ID_categoria),
-  FOREIGN KEY (ID_tema) REFERENCES TEMA(ID),
-  FOREIGN KEY (ID_categoria) REFERENCES CATEGORIA(ID)
+CREATE TABLE R_TOPIC_CATEGORY (
+  ID_topic INT NOT NULL,
+  ID_category INT NOT NULL,
+  PRIMARY KEY (ID_topic, ID_category),
+  FOREIGN KEY (ID_topic) REFERENCES TOPIC(ID),
+  FOREIGN KEY (ID_category) REFERENCES CATEGORY(ID)
 );
 
-CREATE TABLE VISUALIZACION (
+CREATE TABLE VISUALIZATION (
   ID INT NOT NULL AUTO_INCREMENT,
-  ID_tema INT NOT NULL,
-  ID_usuario INT NOT NULL,
-  fecha_visualizacion TIMESTAMP NOT NULL DEFAULT (NOW()),
+  ID_topic INT NOT NULL,
+  ID_user INT NOT NULL,
+  date TIMESTAMP NOT NULL DEFAULT (NOW()),
   PRIMARY KEY (ID),
-  FOREIGN KEY (ID_tema) REFERENCES TEMA(ID),
-  FOREIGN KEY (ID_usuario) REFERENCES USUARIO(ID)
+  FOREIGN KEY (ID_topic) REFERENCES TOPIC(ID),
+  FOREIGN KEY (ID_user) REFERENCES USER(ID)
 );
 
 
 
 -- -- INSERCIONES
--- INSERT INTO USUARIO (username, password, correo_electronico, nombre, apellido_paterno, apellido_materno, foto_perfil)
--- VALUES
---   ('usuario1', 'pass1', '2000000001@est.umss.edu', 'Juan', 'Pérez', 'González', 'https://randomuser.me/api/portraits/men/74.jpg'),
---   ('usuario2', 'pass2', '2000000002@est.umss.edu', 'María', 'García', 'López', 'https://randomuser.me/api/portraits/women/74.jpg'),
---   ('usuario3', 'pass3', '2000000003@est.umss.edu', 'Carlos', 'Martínez', NULL, 'https://randomuser.me/api/portraits/men/30.jpg'),
---   ('usuario4', 'pass4', '2000000004@est.umss.edu', 'Laura', 'Fernández', 'Sánchez', 'https://randomuser.me/api/portraits/women/30.jpg'),
---   ('usuario5', 'pass5', '2000000005@est.umss.edu', 'Pedro', 'Díaz', 'Gómez', 'https://randomuser.me/api/portraits/men/31.jpg'),
---   ('usuario6', 'pass6', '2000000006@est.umss.edu', 'Ana', 'Rodríguez', 'Hernández', 'https://randomuser.me/api/portraits/women/30.jpg'),
---   ('usuario7', 'pass7', '2000000007@est.umss.edu', 'Miguel', 'López', NULL, 'https://randomuser.me/api/portraits/men/2.jpg'),
---   ('usuario8', 'pass8', '2000000008@est.umss.edu', 'Sofía', 'Pérez', 'Martínez', 'https://randomuser.me/api/portraits/women/2.jpg'),
---   ('usuario9', 'pass9', '2000000009@est.umss.edu', 'Javier', 'Gómez', NULL, 'https://randomuser.me/api/portraits/men/10.jpg'),
---   ('usuario10', 'pass10', '2000000010@est.umss.edu', 'Elena', 'Sánchez', 'Martínez', 'https://randomuser.me/api/portraits/women/10.jpg');
+INSERT INTO USER (username, password, mail, name, last_name) VALUES 
+  ('user1', '$2a$12$WYq.d5ylOCb8X27fECGOAe93AdcqkUFk36gS2MZ3PZOV8lRlTfvCW', 'user1@example.com', 'John', 'Doe'), -- password
+  ('user2', '$2a$12$WYq.d5ylOCb8X27fECGOAe93AdcqkUFk36gS2MZ3PZOV8lRlTfvCW', 'user2@example.com', 'Jane', 'Smith'), -- password
+  ('user3', '$2a$12$WYq.d5ylOCb8X27fECGOAe93AdcqkUFk36gS2MZ3PZOV8lRlTfvCW', 'user3@example.com', 'Michael', 'Johnson'), -- password
+  ('user4', '$2a$12$WYq.d5ylOCb8X27fECGOAe93AdcqkUFk36gS2MZ3PZOV8lRlTfvCW', 'user4@example.com', 'Emily', 'Brown'), -- password
+  ('user5', '$2a$12$WYq.d5ylOCb8X27fECGOAe93AdcqkUFk36gS2MZ3PZOV8lRlTfvCW', 'user5@example.com', 'William', 'Taylor'); -- password
 
--- INSERT INTO CATEGORIA (nombre) VALUES
---   ('Matemáticas'),
---   ('Física'),
---   ('Programación'),
---   ('Programación Funcional'),
---   ('Estructuras de Datos'),
---   ('Algoritmos'),
---   ('Redes de Computadoras'),
---   ('Sistemas Operativos'),
---   ('Ingeniería de Software'),
---   ('Bases de Datos'),
---   ('Inteligencia Artificial'),
---   ('Seguridad Informática'),
---   ('Análisis y Diseño de Sistemas'),
---   ('Desarrollo Web'),
---   ('Desarrollo Móvil'),
---   ('Computación en la Nube'),
---   ('Arquitectura de Computadores'),
---   ('Sistemas Embebidos'),
---   ('Ingeniería de Requisitos'),
---   ('Interacción Humano-Computadora');
+INSERT INTO CONTENT (ID_user, description) VALUES
+  (1, '## Title 1\n\nEste es un **texto resaltado**. Aquí tienes una tabla:\n\n| Encabezado 1 | Encabezado 2 |\n| ------------ | ------------ |\n| Valor 1      | Valor 2      |\n\nY aquí tienes un bloque de código:\n\n```javascript\nfunction saludar() {\n  console.log("¡Hola, mundo!");\n}\n```'),
+  (2, '## Title 2\n\nEste es otro **texto resaltado**. Aquí tienes una lista:\n\n- Item 1\n- Item 2\n\nY aquí tienes otro bloque de código:\n\n```python\nprint("Hola, mundo")\n```'),
+  (3, '## Title 3\n\nEste es un *texto en cursiva*. Aquí tienes una lista numerada:\n\n1. Elemento 1\n2. Elemento 2\n\nY aquí tienes un bloque de código:\n\n```java\nSystem.out.println("¡Hola, mundo!");\n```'),
+  (4, '## Title 4\n\nEste es un ~~texto tachado~~. Aquí tienes una lista de tareas:\n\n- [x] Tarea 1\n- [ ] Tarea 2\n\nY aquí tienes otro bloque de código:\n\n```c\nprintf("¡Hola, mundo!");\n```'),
+  (5, '## Title 5\n\nEste es un enlace a [Google](https://www.google.com/). Aquí tienes una cita:\n\n> Esto es una cita.\n\nY aquí tienes un bloque de código:\n\n```ruby\nputs "¡Hola, mundo!"\n```'),
+  (1, '### Comentario 1 en Topic 1\n\nEste es un *comentario* con **texto resaltado**.'),
+  (2, '### Comentario 1 en Topic 2\n\nEste es otro *comentario* con **texto resaltado** y un bloque de código:\n\n```java\nSystem.out.println("¡Hola, mundo!");\n```'),
+  (1, '### Comentario 1 en Topic 3\n\nEste es un *comentario* con _texto en cursiva_.'),
+  (3, '### Comentario 1 en Topic 4\n\nEste es otro *comentario* con ~~texto tachado~~ y una lista de tareas:\n\n- [x] Tarea 1\n- [ ] Tarea 2'),
+  (3, '### Comentario 1 en Topic 5\n\nEste es un *comentario* con [un enlace](https://www.example.com) y una cita:\n\n> Esto es una cita.');
 
--- INSERT INTO CONTENIDO (ID_usuario, descripcion) VALUES
---   (1, "## Criptografía y Teoría de Números\n\nLa criptografía moderna se basa en principios matemáticos sólidos, especialmente en la teoría de números. En este tema, discutiremos cómo se aplican los conceptos de teoría de números en el diseño de sistemas de cifrado y cómo estas técnicas protegen la información en el mundo digital.\n\n| **Contenido** | **Autor** | **Fecha de Publicación** |\n|---------------|-----------|--------------------------|\n| [Criptografía Post-Clásica: Aplicaciones y Desafíos](https://example.com/criptografia) | Juan Pérez | 2024-05-05 |\n| [Principios de RSA y su Aplicación en la Seguridad Informática](https://example.com/rsa) | María García | 2024-05-06 |\n\n![Imagen de Criptografía](https://isohub.org/wp-content/uploads/2021/10/criptografia_isohub.png)"),
---   (4, "## Física cuántica y sus aplicaciones en computación\n\bLa física cuántica está revolucionando el mundo de la computación. En este tema, exploraremos cómo los principios de la mecánica cuántica se aplican en el diseño de computadoras cuánticas y cómo estas pueden resolver problemas que son prácticamente imposibles de abordar para las computadoras clásicas.\n\n| **Contenido** | **Autor** | **Fecha de Publicación** |\n|---------------|-----------|--------------------------|\n| [Computación Cuántica: Del Laboratorio a la Realidad](https://example.com/computacion-cuantica) | Carlos Martínez | 2024-05-07 |\n| [Simulaciones Cuánticas y su Impacto en la Industria](https://example.com/simulaciones-cuanticas) | Laura Fernández | 2024-05-08 |\n\n![Imagen de Física Cuántica](https://planetario.montevideo.gub.uy/sites/planetario.montevideo.gub.uy/files/articulos/imagenes/fisica_cuantica_22.jpg)"),
---   (5, "## Introducción a la programación funcional con Haskell\n\nHaskell es un lenguaje de programación funcional puro que ha ganado popularidad en los últimos años. En este tema, aprenderemos los conceptos básicos de Haskell y cómo su enfoque funcional puede conducir a un código más claro y conciso.\n\n| **Contenido** | **Autor** | **Fecha de Publicación** |\n|---------------|-----------|--------------------------|\n| [Fundamentos de Haskell: Sintaxis y Tipos de Datos](https://example.com/fundamentos-haskell) | Pedro Díaz | 2024-05-09 |\n| [Programación Funcional en la Práctica: Ejemplos y Ejercicios](https://example.com/programacion-funcional) | Ana Rodríguez | 2024-05-10 |\n\n![Imagen de Haskell](https://example.com/haskell.jpg)"),
---   (7, "Comentario prueba, no tomar importancia!!!"),
---   (3, "Comentario prueba, no tomar importancia 2!!!"),
---   (1, "Comentario prueba, no tomar importancia 3!!!"),
---   (7, "Comentario prueba, no tomar importancia 4!!!"),
---   (2, "Comentario prueba, no tomar importancia 5!!!"),
---   (9, "Comentario prueba, no tomar importancia 6!!!");
+INSERT INTO TOPIC (ID, title) VALUES
+  (1, 'Title 1'),
+  (2, 'Title 2'),
+  (3, 'Title 3'),
+  (4, 'Title 4'),
+  (5, 'Title 5');
 
--- INSERT INTO TEMA (ID, titulo) VALUES
---   (1, "Un poco sobre ciptografia"),
---   (2, "¿Es realmente importante saber sobre la fisica cuantica?"),
---   (3, "¡Desarrollando nuevas habilidades, rompiendo tus fronteras!");
-
--- INSERT INTO COMENTARIO (ID, ID_tema) VALUES
---   (4, 3),
---   (5, 3),
---   (6, 3),
---   (7, 3),
---   (8, 3),
---   (9, 3);
-
--- INSERT INTO R_TEMA_CATEGORIA (ID_tema, ID_categoria) VALUES
---   (1, 1),
---   (1, 6),
---   (1, 11),
---   (1, 12),
---   (2, 2),
---   (2, 17),
---   (3, 3),
---   (3, 4),
---   (3, 5),
---   (3, 6);
-
--- INSERT INTO VISUALIZACION (ID_tema, ID_usuario) VALUES
---   (1, 10),
---   (1, 7),
---   (2, 7),
---   (2, 1),
---   (1, 2),
---   (1, 2),
---   (3, 8),
---   (3, 9),
---   (3, 4),
---   (3, 8),
---   (3, 9),
---   (3, 4),
---   (3, 8),
---   (3, 9),
---   (3, 4),
---   (1, 7);
-
-
-
--- -- ACTUALIZACIONES
--- UPDATE TEMA SET activo = 0 WHERE ID = 2;
+INSERT INTO COMMENT (ID, ID_topic) VALUES
+  (6, 1),
+  (7, 1),
+  (8, 1),
+  (9, 2),
+  (10, 5);
