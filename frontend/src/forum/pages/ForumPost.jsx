@@ -9,7 +9,7 @@ export const ForumPost = () => {
   const [data, setData] = useState('')
   const navigate = useNavigate()
   const [fetchData, response, error] = usePost(
-    'http://localhost:8080/api/v1/topics/create')
+    'http://localhost:8080/api/topics')
 
   useEffect(() => {
     if (!!response && !error) {
@@ -22,7 +22,7 @@ export const ForumPost = () => {
     const title = document.getElementById('titleTopicForumLabel').value
 
     fetchData(
-      { title, data }, 
+      { title, description: data },
       { Authorization: `Bearer ${localStorage.getItem('token')}`}
     )
   }

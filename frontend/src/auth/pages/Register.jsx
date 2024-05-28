@@ -17,7 +17,7 @@ const initialValues = {
 export const Register = () => {
   const [redirect, setRedirect] = useState(false)
   const [formData, handleInputChange] = useForm(initialValues)
-  const [fetchData, data, error] = usePost('http://localhost:8000/auth/register')
+  const [fetchData, data, error] = usePost('http://localhost:8080/api/users')
 
   useEffect(() => {
     if (data) {
@@ -27,6 +27,7 @@ export const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    formData.mail += '@est.umss.edu'
     fetchData(formData)
   }
 

@@ -1,4 +1,3 @@
-import { useUser } from '@auth/hooks'
 import { useGet } from '@common/hooks'
 import { ArticleForum } from '@forum/components'
 import { Link } from 'react-router-dom'
@@ -6,9 +5,7 @@ import '@forum/styles/ForumList.css'
 
 
 export const ForumList = () => {
-  const [{ token }] = useUser()
-  const [topics, error] = useGet('http://localhost:8080/api/v1/topics',
-    { Authorization: `Bearer ${token}` })
+  const [topics, error] = useGet('http://localhost:8080/api/topics')
 
   return (
     <div className='container forum'>

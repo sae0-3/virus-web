@@ -1,6 +1,7 @@
 import Markdown from 'react-markdown'
 import { Link } from 'react-router-dom'
 import remarkGfm from 'remark-gfm'
+import userIcon from '@common/assets/user.png'
 
 
 const changeIcon = (element) => {
@@ -35,7 +36,7 @@ export const CardTopicInformation = ({ content, isOwner }) => {
       <div className='card-header'>
         {!!author &&
           <Link to={`/usuario/${author.id}`} className='profile-info'>
-            <img src={author.profile} alt='user profile' />
+            <img src={author.profile || userIcon} alt='user profile' />
             <h5 className='username'>{author.username}</h5>
           </Link>
         }
