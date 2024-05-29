@@ -1,5 +1,6 @@
 'use strict'
 
+import { getPayloadToken } from '../../../auth/helpers/index.js'
 import { postComment as post } from '../models/index.js'
 
 

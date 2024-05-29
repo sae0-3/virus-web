@@ -1,5 +1,6 @@
 'use strict'
 
+import { getPayloadToken } from '../../../auth/helpers/index.js'
 import { deleteComment as remove } from '../models/index.js'
 
 

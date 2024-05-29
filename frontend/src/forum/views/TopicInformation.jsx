@@ -3,7 +3,7 @@ import { CardTopic } from '@forum/components'
 import '@forum/styles/TopicInformation.css'
 
 
-export const TopicInformation = ({ topic, callback }) => {
+export const TopicInformation = ({ topic, callback, refetch }) => {
   const [{ id: user_id }] = useUser()
   const { author, active, categories, comments, title, views } = topic
   const isOwner = author.id===user_id
@@ -61,7 +61,11 @@ export const TopicInformation = ({ topic, callback }) => {
         }
 
         return (
-          <CardTopic key={id} content={data} isOwner={comentator.id===user_id} />
+          <CardTopic key={id}
+            content={data}
+            isOwner={comentator.id===user_id}
+            refetch={refetch}
+          />
         )
       })}
     </div>

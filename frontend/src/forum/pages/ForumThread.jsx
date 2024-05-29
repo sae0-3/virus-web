@@ -26,6 +26,7 @@ export const ForumThread = () => {
     <TopicInformation
       topic={data}
       callback={setEditing}
+      refetch={refetch}
     />
   )
 }
