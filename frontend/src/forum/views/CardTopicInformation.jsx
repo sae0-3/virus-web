@@ -1,3 +1,5 @@
+import { useUser } from '@auth/hooks'
+import { useGet, usePost } from '@common/hooks'
 import Markdown from 'react-markdown'
 import { Link } from 'react-router-dom'
 import remarkGfm from 'remark-gfm'
@@ -14,24 +16,31 @@ const changeIcon = (element) => {
     : element.className + '-fill'
 }
 
-export const CardTopicInformation = ({ content, isOwner }) => {
-  const { author, description, created_at } = content
-
-  const handleEdit = ({ target }) => {
-  }
+export const CardTopicInformation = ({ content, isOwner, isComment, setEditing }) => {
+  const { id, author, description, created_at } = content
+  const [{ id: user_id, token }] = useUser()
+  const header_token = { Authorization: `Bearer ${token}` }
+  const [data] = useGet( `http://localhost:8080/api/users/${user_id}`, header_token )
+  const { saved, interested } = !!data && data
+  const [postSaved, , errorSaved] = usePost(
+    `http://localhost:8080/api/saved/${id}`)
+  const [postInterested, , errorInterested] = usePost(
+    `http://localhost:8080/api/interested/${id}`)
 
   const handleLike = ({ target }) => {
-    changeIcon(target)
+    postInterested(null, header_token)
+    if (!errorInterested) changeIcon(target)
   }
 
   const handleSave = ({ target }) => {
-    changeIcon(target)
+    postSaved(null, header_token)
+    if (!errorSaved) changeIcon(target)
   }
 
   const handleReply = ({ target }) => {
   }
 
-  return (
+  return (!!data &&
     <div className='cardTopic card'>
       <div className='card-header'>
         {!!author &&
@@ -53,11 +62,11 @@ export const CardTopicInformation = ({ content, isOwner }) => {
 
       <div className='card-footer'>
         <div className="btns">
-          {isOwner &&
+          {isOwner && isComment &&
             <button
               type='button'
               className='btn'
-              onClick={handleEdit}
+              onClick={() => { setEditing(true) }}
             ><i className='bi bi-pencil-square'></i>
             </button>
           }
@@ -65,20 +74,29 @@ export const CardTopicInformation = ({ content, isOwner }) => {
             type='button'
             className='btn'
             onClick={handleLike}
-          ><i className='bi bi-hand-thumbs-up'></i>
+          ><i className={
+            interested.includes(id)
+              ? 'bi bi-hand-thumbs-up-fill'
+              : 'bi bi-hand-thumbs-up'
+          }></i>
           </button>
           <button
             type='button'
             className='btn'
             onClick={handleSave}
-          ><i className='bi bi-bookmark'></i>
+          ><i className={
+            saved.includes(id)
+              ? 'bi bi-bookmark-fill'
+              : 'bi bi-bookmark'
+          }></i>
           </button>
-          <button
-            type='button'
-            className='btn'
-            onClick={handleReply}
-          ><i className='bi bi-reply'></i>
-          </button>
+          {!isComment &&
+            <button
+              type='button'
+              className='btn'
+              onClick={handleReply}
+            ><i className='bi bi-reply'></i>
+          </button>}
         </div>
       </div>
     </div>

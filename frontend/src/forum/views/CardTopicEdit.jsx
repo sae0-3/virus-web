@@ -1,7 +1,12 @@
 
 
-export const CardTopicEdit = () => {
+export const CardTopicEdit = ({ content, setEditing }) => {
+  console.log(content)
+
   return (
-    <div>CardTopicEdit</div>
+    <button className="btn btn-outline-primary"
+      onClick={() => { setEditing(false) }}
+    >Dejar de editar
+    </button>
   )
 }

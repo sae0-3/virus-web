@@ -6,6 +6,7 @@ import conn from '../../../core/configs/db.js'
 const getTopicById = async (id) => {
   const queryTopic = `
   SELECT
+    t.ID AS id,
     title,
     description,
     JSON_OBJECT(
