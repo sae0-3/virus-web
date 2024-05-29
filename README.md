@@ -53,46 +53,68 @@ No existira grupos, solo chats privados.
 
 <a name="desarrollo"></a>
 ### Desarrollo
-1. Construir el contenedor
+1. Clonar el repositorio
+```hs
+git clone git@github.com:sae0-3/virus-web.git
+```
+
+2. Entrar al proyecto
+```hs
+cd virus-web/
+ls -l
+```
+
+3. Construir el contenedor
 ```hs
 docker compose -f docker-compose-dev.yml up -d
 ```
 
-2. Subir la base datos /backend/structure.sql (phpmyadmin activado en el puerto 80: `http://localhost`)
+4. Subir la base datos /backend/structure.sql (phpmyadmin activado en el puerto 80: `http://localhost`)
 
-3. Identificar el id que se proporciono a los contenedores de node (`virus-web-nodejs-frontend-1` y `virus-web-nodejs-backend-1`)
+5. Identificar el id que se proporciono a los contenedores de node (`virus-web-nodejs-frontend-1` y `virus-web-nodejs-backend-1`)
 ```hs
 docker container ls
 ```
 
-4. Ingresar a la terminal interactiva de `virus-web-nodejs-backend-1`
+6. Ingresar a la terminal interactiva de `virus-web-nodejs-backend-1`
 ```hs
 docker exec -it <id_container> sh
 ```
 
-5. Instalar pnpm (opcional)
+7. Instalar pnpm (opcional)
 ```hs
 npm install -g pnpm
 ```
 
-6. Instalar los paquetes de desarrollo (de no haber instalado pnpm se usa npm)
+8. Instalar los paquetes de desarrollo (de no haber instalado pnpm se usa npm)
 ```hs
 pnpm install
 ```
 
-7. Hacer correr el servidor de desarrollo
+9. Hacer correr el servidor de desarrollo
 ```hs
 npm run dev
 ```
 
-8. Abrir otra terminal
+10. Abrir otra terminal
 
-9. Volver al paso 3 y ahora hacerlo para `virus-web-nodejs-frontend-1`
+11. Volver al paso 3 y ahora hacerlo para `virus-web-nodejs-frontend-1`
 
-10. Eliminar los contenedores
+12. Eliminar los contenedores
 ```hs
 docker compose -f docker-compose-dev.yml down
 ```
+
+****
+![](docs/1.png)
+****
+![](docs/2.png)
+****
+![](docs/3.png)
+****
+![](docs/4.png)
+![](docs/5.png)
+****
 
 <a name="produccion"></a>
 ### Produccion
