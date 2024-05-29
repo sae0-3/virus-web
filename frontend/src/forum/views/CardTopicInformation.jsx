@@ -90,7 +90,7 @@ export const CardTopicInformation = ({ content, isOwner, isComment, setEditing }
               : 'bi bi-bookmark'
           }></i>
           </button>
-          {!isComment &&
+          {!isComment && !!content.active &&
             <button
               type='button'
               className='btn'
