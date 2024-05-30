@@ -32,7 +32,7 @@ export const Profile = () => {
 
       <section className='card text-bg-secondary mb-5'>
         <div className='card-body'>
-          <div className='d-flex justify-content-sm-evenly mb-3 mt-3'>
+          <div className='d-flex justify-content-sm-evenly gap-3 mb-3 mt-3'>
             <div className='d-flex justify-content-center align-items-center'>
               <img
                 src={!!profile ? profile : userIcon}

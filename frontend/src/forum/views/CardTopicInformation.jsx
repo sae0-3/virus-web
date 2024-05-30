@@ -16,7 +16,7 @@ const changeIcon = (element) => {
     : element.className + '-fill'
 }
 
-export const CardTopicInformation = ({ content, isOwner, isComment, setEditing }) => {
+export const CardTopicInformation = ({ content, isOwner, isComment, setEditing, setCommented }) => {
   const { id, author, description, created_at } = content
   const [{ id: user_id, token }] = useUser()
   const header_token = { Authorization: `Bearer ${token}` }
@@ -35,9 +35,6 @@ export const CardTopicInformation = ({ content, isOwner, isComment, setEditing }
   const handleSave = ({ target }) => {
     postSaved(null, header_token)
     if (!errorSaved) changeIcon(target)
-  }
-
-  const handleReply = ({ target }) => {
   }
 
   return (!!data &&
@@ -94,7 +91,7 @@ export const CardTopicInformation = ({ content, isOwner, isComment, setEditing }
             <button
               type='button'
               className='btn'
-              onClick={handleReply}
+              onClick={() => { setCommented(true) }}
             ><i className='bi bi-reply'></i>
           </button>}
         </div>

@@ -3,7 +3,7 @@ import { CardTopic } from '@forum/components'
 import '@forum/styles/TopicInformation.css'
 
 
-export const TopicInformation = ({ topic, callback, refetch }) => {
+export const TopicInformation = ({ topic, setEditing, setCommented, refetch }) => {
   const [{ id: user_id }] = useUser()
   const { author, active, categories, comments, title, views } = topic
   const isOwner = author.id===user_id
@@ -12,7 +12,7 @@ export const TopicInformation = ({ topic, callback, refetch }) => {
     <div className='container'>
       <div className='cardTopicForum'>
         <h2 className='cardTopicForum-title'>{title}</h2>
-        <CardTopic content={topic} isOwner={isOwner} />
+        <CardTopic content={topic} isOwner={isOwner} setCommented={setCommented} />
 
         <section className='cardTopicForum-footer'>
           <div className='cardTopicForum-footer_gear'>
@@ -20,7 +20,7 @@ export const TopicInformation = ({ topic, callback, refetch }) => {
               active ? 'success' : 'danger'}`}
             >{active ? 'Abierto' : 'Cerrado'}</span>
             {isOwner &&
-              <button className='btn' onClick={() => {callback(true)}}>
+              <button className='btn' onClick={() => {setEditing(true)}}>
                 <i className='bi bi-gear-fill text-secondary'></i>
               </button>
             }

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import '@forum/styles/CardTopic.css'
 
 
-export const CardTopic = ({ content, isOwner, refetch }) => {
+export const CardTopic = ({ content, isOwner, refetch, setCommented }) => {
   const [editing, setEditing] = useState(false)
 
   return editing ? (
@@ -18,6 +18,7 @@ export const CardTopic = ({ content, isOwner, refetch }) => {
       isOwner={isOwner}
       isComment={!content.title}
       setEditing={setEditing}
+      setCommented={setCommented}
     />
   )
 }
