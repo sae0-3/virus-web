@@ -10,7 +10,7 @@ const getUserById = async (id) => {
       'id', t.ID,
       'title', t.title,
       'active', t.active,
-      'created_at', DATE_FORMAT(c.created_at, '%Y-%m-%d')
+      'created_at', DATE_FORMAT(c.created_at, '%d/%m/%Y')
     )
   )
   FROM CONTENT c
@@ -36,7 +36,7 @@ const getUserById = async (id) => {
     u.last_name AS lastname,
     u.second_name AS secondname,
     u.profile,
-    DATE_FORMAT(u.created_at, '%Y-%m-%d') AS registered_at,
+    DATE_FORMAT(u.created_at, '%d/%m/%Y') AS registered_at,
     COALESCE((${getTopics}), JSON_ARRAY()) AS topics,
     COALESCE((${getSaved}), JSON_ARRAY()) AS saved,
     COALESCE((${getInterested}), JSON_ARRAY()) AS interested

@@ -14,7 +14,7 @@ const getTopicAll = async () => {
       'username', u.username,
       'profile', u.profile
     ) AS author,
-    DATE_FORMAT(c.created_at, '%Y-%m-%d') AS created_at,
+    DATE_FORMAT(c.created_at, '%d-%m-%Y') AS created_at,
     COALESCE(COUNT(DISTINCT co.ID), 0) AS comments,
     COALESCE(COUNT(DISTINCT v.ID), 0) AS views,
     COALESCE((
@@ -45,6 +45,7 @@ const getTopicAll = async () => {
     u.username,
     u.profile,
     c.created_at
+  ORDER BY c.created_at DESC
   `
 
   try {

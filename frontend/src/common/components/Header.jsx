@@ -5,7 +5,7 @@ import './styles/Header.css'
 
 
 export const Header = () => {
-  const [{ isAuthenticated }, setUser] = useUser()
+  const [{ id, isAuthenticated }, setUser] = useUser()
   const offcanvas = useRef()
 
   const handleClick = () => {
@@ -75,7 +75,7 @@ export const Header = () => {
         </section>
         <section className='offcanvas-footer'>
           <div>
-            <Link to={isAuthenticated ? '/perfil' : '/iniciar-sesion'}
+            <Link to={isAuthenticated ? `/usuario/${id}` : '/iniciar-sesion'}
               onClick={handleClick}
               className='btn btn-outline-primary'
             >{isAuthenticated ? 'Ver Perfil' : 'Iniciar Sesión'}</Link>

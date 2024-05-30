@@ -1,4 +1,3 @@
-import { Loading } from '@common/components'
 import { useForm, usePost } from '@common/hooks'
 import { useEffect, useState } from 'react'
 import { Link, Navigate } from 'react-router-dom'
@@ -13,7 +12,7 @@ const initialValues = {
 export const Login = () => {
   const [redirect, setRedirect] = useState(false)
   const [formData, handleInputChage] = useForm(initialValues)
-  const [fetchData, data, , isLoading] = usePost('http://localhost:8000/auth/login')
+  const [fetchData, data, error] = usePost('http://localhost:8000/auth/login')
 
   useEffect(() => {
     if (data) {
@@ -29,8 +28,6 @@ export const Login = () => {
 
   return redirect ? (
     <Navigate to='/' replace />
-  ) : isLoading ? (
-    <Loading />
   ) : (
     <div className='container login-container'>
       <div className='login-subcontainer text-center'>
@@ -70,6 +67,10 @@ export const Login = () => {
             <input className='btn btn-success' type='submit'/>
           </div>
         </form>
+
+        {!!error &&
+          <p className='text-center h3 text-danger'>{error.message}</p>
+        }
       </div>
     </div>
   )

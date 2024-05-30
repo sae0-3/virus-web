@@ -6,6 +6,7 @@ import conn from '../../../core/configs/db.js'
 const getTopicById = async (id) => {
   const queryTopic = `
   SELECT
+    t.ID AS id,
     title,
     description,
     JSON_OBJECT(
@@ -19,12 +20,11 @@ const getTopicById = async (id) => {
       THEN JSON_ARRAYAGG(DISTINCT ca.name)
       ELSE JSON_ARRAY()
     END AS categories,
-    DATE_FORMAT(c.created_at, '%Y-%m-%d') AS created_at
+    DATE_FORMAT(c.created_at, '%d-%m-%Y') AS created_at
   FROM TOPIC t
     JOIN CONTENT c ON t.ID = c.ID
     JOIN USER u ON c.ID_user = u.ID
-    LEFT JOIN R_TOPIC_CATEGORY r_tc ON t.ID = r_tc.ID_topic
-    LEFT JOIN CATEGORY ca ON r_tc.ID_category = ca.ID
+    LEFT JOIN CATEGORY ca ON t.ID = ca.ID_topic
     LEFT JOIN VISUALIZATION v ON t.ID = v.ID_topic
   WHERE t.ID = ?
   GROUP BY t.ID
@@ -38,7 +38,7 @@ const getTopicById = async (id) => {
       'profile', profile
     ) AS comentator,
     description AS content,
-    DATE_FORMAT(c_co.created_at, '%Y-%m-%d') AS commented_at
+    DATE_FORMAT(c_co.created_at, '%d-%m-%Y') AS commented_at
   FROM TOPIC t
     JOIN COMMENT c ON t.ID = c.ID_topic
     JOIN CONTENT c_co ON c.ID = c_co.ID

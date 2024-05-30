@@ -1,4 +1,3 @@
-import { Loading } from '@common/components'
 import { useForm, usePost } from '@common/hooks'
 import { useEffect, useState } from 'react'
 import { Navigate } from 'react-router-dom'
@@ -18,7 +17,7 @@ const initialValues = {
 export const Register = () => {
   const [redirect, setRedirect] = useState(false)
   const [formData, handleInputChange] = useForm(initialValues)
-  const [fetchData, data, error, isLoading] = usePost('http://localhost:8000/auth/register')
+  const [fetchData, data, error] = usePost('http://localhost:8080/api/users')
 
   useEffect(() => {
     if (data) {
@@ -28,13 +27,12 @@ export const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    formData.mail += '@est.umss.edu'
     fetchData(formData)
   }
 
   return redirect ? (
     <Navigate to='/iniciar-sesion' replace />
-  ) : isLoading ? (
-    <Loading />
   ) : (
     <div className='container register-container'>
       <div className='register-subcontainer text-center'>

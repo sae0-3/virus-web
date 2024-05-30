@@ -1,7 +1,7 @@
 export const NotMatch = () => {
   return (
     <div className='container'>
-      <h2 className='text-center'>Pagina no encontrada</h2>
+      <p className='h1 text-center mt-5 fw-bold'>Pagina no encontrada</p>
     </div>
   )
 }

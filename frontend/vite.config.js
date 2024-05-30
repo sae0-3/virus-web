@@ -17,6 +17,7 @@ export default defineConfig({
       '@common': path.resolve(__dirname, './src/common'),
       '@forum': path.resolve(__dirname, './src/forum'),
       '@notice': path.resolve(__dirname, './src/notice'),
+      '@profile': path.resolve(__dirname, './src/profiles'),
     },
   },
 })

@@ -3,14 +3,14 @@
 import conn from '../../../core/configs/db.js'
 
 
-const putTopic = async (user_id, topic_id, title, description) => {
+const putTopic = async (user_id, topic_id, active, title, description) => {
   const query = `
   SELECT ID_user 
   FROM TOPIC t
     LEFT JOIN CONTENT c ON t.ID = c.ID
   WHERE t.ID = ?
   `
-  const putTopic = `UPDATE TOPIC SET title = ? WHERE ID = ?`
+  const putTopic = `UPDATE TOPIC SET title = ?, active = ? WHERE ID = ?`
   const putContent = `
   UPDATE CONTENT
   SET description = ?
@@ -30,7 +30,7 @@ const putTopic = async (user_id, topic_id, title, description) => {
 
     await conn.beginTransaction()
     await conn.execute(putContent, [description, topic_id, user_id])
-    await conn.execute(putTopic, [title, topic_id])
+    await conn.execute(putTopic, [title, active, topic_id])
     await conn.commit()
   } catch (error) {
     await conn.rollback()
