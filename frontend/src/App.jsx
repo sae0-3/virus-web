@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import { ProtectedRoute } from '@auth/components'
 import { Login, Register } from '@auth/pages'
 import { UserProvider } from '@auth/providers'
-import { Chat } from '@chat/pages'
+import { Chat, ViewChats } from '@chat/pages'
 import { Header } from '@common/components'
 import { NotMatch } from '@common/pages'
 import { ForumList, ForumPost, ForumThread } from '@forum/pages'
@@ -31,7 +31,9 @@ export const App = () => {
           <Route path='usuario/:id' element={<Profile />} />
 
           <Route path='anuncios' element={<Notice />} />
-          <Route path='chat' element={<Chat />} />
+
+          <Route path='chat' element={<ViewChats />} />
+          <Route path='chat/:id' element={<Chat />} />
 
           <Route path='*' element={<NotMatch />} />
         </Route>

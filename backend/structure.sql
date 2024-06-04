@@ -78,6 +78,17 @@ CREATE TABLE VISUALIZATION (
   FOREIGN KEY (ID_user) REFERENCES USER(ID) ON DELETE CASCADE
 );
 
+CREATE TABLE MESSAGE (
+  ID INT NOT NULL AUTO_INCREMENT,
+  ID_user_origin INT NOT NULL,
+  ID_user_destiny INT NOT NULL,
+  content TEXT NOT NULL,
+  date TIMESTAMP NOT NULL DEFAULT (NOW()),
+  PRIMARY KEY (ID),
+  FOREIGN KEY (ID_user_origin) REFERENCES USER(ID) ON DELETE CASCADE,
+  FOREIGN KEY (ID_user_destiny) REFERENCES USER(ID) ON DELETE CASCADE
+);
+
 
 
 -- -- INSERCIONES
@@ -113,3 +124,25 @@ INSERT INTO COMMENT (ID, ID_topic) VALUES
   (8, 1),
   (9, 2),
   (10, 5);
+
+INSERT INTO MESSAGE (ID_user_origin, ID_user_destiny, content) VALUES
+  (1, 2, 'Hola, ¿cómo estás?'),
+  (2, 3, '¡Todo bien! ¿Y tú?'),
+  (3, 1, 'Yo también estoy bien. ¿Qué estás haciendo?'),
+  (1, 4, 'No mucho, solo navegando por internet. ¿Y tú?'),
+  (4, 3, 'Estoy trabajando en un proyecto nuevo. Es bastante interesante.'),
+  (3, 2, '¡Suena genial! ¿De qué trata el proyecto?'),
+  (2, 1, 'Es una aplicación para ayudar a las personas a organizar sus tareas.'),
+  (1, 3, '¡Eso es muy útil! Me encantaría probarla.'),
+  (3, 4, '¡Claro que sí! Te enviaré un enlace cuando esté lista.'),
+  (4, 2, '¡Gracias! Espero con ansias verla.'),
+  (2, 1, '¿Y qué más estás haciendo hoy?'),
+  (1, 4, 'Más tarde voy a ir al gimnasio.'),
+  (4, 3, '¡Buena idea! El ejercicio es importante.'),
+  (3, 2, 'Sí, lo sé. A veces me da pereza, pero luego me siento mucho mejor después.'),
+  (2, 1, '¡Lo mismo me pasa a mí! Pero hay que ser constantes.'),
+  (1, 3, '¿Y qué planes tienes para el fin de semana?'),
+  (3, 4, 'Todavía no lo sé, pero creo que voy a salir con unos amigos.'),
+  (4, 2, '¡Suena divertido! ¿Qué van a hacer?'),
+  (2, 1, 'No lo hemos decidido todavía, pero tal vez vayamos al cine o a un restaurante.'),
+  (1, 3, '¡Que lo pasen bien! Yo creo que me voy a quedar en casa y relajarme.');
