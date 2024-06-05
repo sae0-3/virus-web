@@ -25,7 +25,7 @@ export const ViewChats = () => {
     const username = document.getElementById('chat-id-user').value
 
     try {
-      const { data: { id } } = await axios.get(`http://localhost:4000/chat/${username}`)
+      const { data: { id } } = await axios.get(`/chat/chat/${username}`)
 
       if (id === authenticated_id) {
         setError('No se puede enviar mensajes a si mismo')
@@ -71,7 +71,7 @@ export const ViewChats = () => {
             return (
               <Link
                 key={user.id}
-                to={`/chat/${user.id}`}
+                to={`/chats/${user.id}`}
                 className='list-group-item list-group-item-action'
               >
                 <div className='d-flex w-100 align-items-center justify-content-between'>

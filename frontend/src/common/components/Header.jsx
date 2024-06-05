@@ -64,7 +64,7 @@ export const Header = () => {
                               link-underline-opacity-75-hover'
               >Anuncios</Link></li>
             <li className='list-group-item'>
-              <Link to='/chat'
+              <Link to='/chats'
                 onClick={handleClick}
                 className='link-body-emphasis
                               link-offset-2

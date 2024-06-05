@@ -32,8 +32,8 @@ export const App = () => {
 
           <Route path='anuncios' element={<Notice />} />
 
-          <Route path='chat' element={<ViewChats />} />
-          <Route path='chat/:id' element={<Chat />} />
+          <Route path='chats' element={<ViewChats />} />
+          <Route path='chats/:id' element={<Chat />} />
 
           <Route path='*' element={<NotMatch />} />
         </Route>

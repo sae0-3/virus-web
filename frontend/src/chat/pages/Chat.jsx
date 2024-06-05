@@ -11,7 +11,7 @@ export const Chat = () => {
   const user_destiny = location.pathname.split('/').pop()
   const [{ id: user_origin }] = useUser()
   const [messages, setMessages] = useState([])
-  const [udd, error] = useGet(`http://localhost:8080/api/users/${user_destiny}`)
+  const [udd, error] = useGet(`api/users/${user_destiny}`)
 
   const getMessages = () => {
     socket.emit('client:getById', user_destiny)

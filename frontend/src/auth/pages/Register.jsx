@@ -17,7 +17,7 @@ const initialValues = {
 export const Register = () => {
   const [redirect, setRedirect] = useState(false)
   const [formData, handleInputChange] = useForm(initialValues)
-  const [fetchData, data, error] = usePost('http://localhost:8080/api/users')
+  const [fetchData, data, error] = usePost('api/users')
 
   useEffect(() => {
     if (data) {
