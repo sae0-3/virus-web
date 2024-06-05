@@ -12,6 +12,7 @@ import {
   getUserByUsername,
   postMessage
 } from './models/index.js'
+import { validate } from '../auth/middlewares/index.js'
 
 
 export default class ServerChat extends Server {
@@ -29,7 +30,7 @@ export default class ServerChat extends Server {
   }
 
   routes() {
-    this.app.use('/chat/:username', async (req, res) => {
+    this.app.use('/chat/:username', validate, async (req, res) => {
       const username = req.params.username
 
       try {
@@ -44,34 +45,42 @@ export default class ServerChat extends Server {
   ws() {
     this.io.on('connection', (socket) => {
       const token = socket.handshake.headers.authorization?.split(' ').pop()
-      const { id: user_id } = getPayloadToken(token)
+      const data = getPayloadToken(token)
 
-      socket.on('client:getAll', async () => {
-        try {
-          const chats = await getMessageAll(user_id)
-          socket.emit('server:getAll', chats)
-        } catch (error) {
-          console.log('Surgio un problema en el servidor')
-        }
-      })
+      if (!!data) {
+        console.log('Se cargo el token')
+        const { id: user_id } = data
 
-      socket.on('client:getById', async (id) => {
-        try {
-          const messages = await getMessageById(user_id, id)
-          socket.emit('server:getById', messages)
-        } catch (error) {
-          console.log('Surgio un problema en el servidor')
-        }
-      })
+        socket.on('client:getAll', async () => {
+          try {
+            const chats = await getMessageAll(user_id)
+            socket.emit('server:getAll', chats)
+          } catch (error) {
+            console.log('Surgio un problema en el servidor')
+          }
+        })
+  
+        socket.on('client:getById', async (id) => {
+          try {
+            const messages = await getMessageById(user_id, id)
+            socket.emit('server:getById', messages)
+          } catch (error) {
+            console.log('Surgio un problema en el servidor')
+          }
+        })
+  
+        socket.on('client:post', async (content, id) => {
+          try {
+            await postMessage(user_id, id, content)
+            socket.emit('server:post', { from: user_id, to: id })
+          } catch (error) {
+            console.log('Surgio un problema en el servidor')
+          }
+        })
+      } else {
+        console.log('No se cargo el token')
+      }
 
-      socket.on('client:post', async (content, id) => {
-        try {
-          await postMessage(user_id, id, content)
-          socket.emit('server:post', { from: user_id, to: id })
-        } catch (error) {
-          console.log('Surgio un problema en el servidor')
-        }
-      })
     })
   }
 

@@ -4,7 +4,11 @@ import { jwtDecode } from "jwt-decode"
 
 
 const getPayloadToken = (token) => {
-  return jwtDecode(token)
+  try {
+    return jwtDecode(token)
+  } catch (error) {
+    return null
+  }
 }
 
 export default getPayloadToken
