@@ -5,7 +5,7 @@ import '@forum/styles/ForumList.css'
 
 
 export const ForumList = () => {
-  const [topics, error] = useGet('api/topics')
+  const [topics, error] = useGet('http://localhost:8080/api/topics')
 
   return (
     <div className='container forum'>

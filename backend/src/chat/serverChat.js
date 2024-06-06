@@ -12,7 +12,6 @@ import {
   getUserByUsername,
   postMessage
 } from './models/index.js'
-import { validate } from '../auth/middlewares/index.js'
 
 
 export default class ServerChat extends Server {
@@ -30,7 +29,7 @@ export default class ServerChat extends Server {
   }
 
   routes() {
-    this.app.use('/chat/:username', validate, async (req, res) => {
+    this.app.use('/chat/:username', async (req, res) => {
       const username = req.params.username
 
       try {

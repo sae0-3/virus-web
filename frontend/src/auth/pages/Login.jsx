@@ -12,7 +12,7 @@ const initialValues = {
 export const Login = () => {
   const [redirect, setRedirect] = useState(false)
   const [formData, handleInputChage] = useForm(initialValues)
-  const [fetchData, data, error] = usePost('auth/login')
+  const [fetchData, data, error] = usePost('http://localhost:8000/auth/login')
 
   useEffect(() => {
     if (data) {
