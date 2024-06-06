@@ -98,6 +98,7 @@ INSERT INTO USER (username, password, mail, name, last_name, profile) VALUES
   ('user3', '$2a$12$WYq.d5ylOCb8X27fECGOAe93AdcqkUFk36gS2MZ3PZOV8lRlTfvCW', 'user3@example.com', 'Michael', 'Johnson', 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'), -- password
   ('user4', '$2a$12$WYq.d5ylOCb8X27fECGOAe93AdcqkUFk36gS2MZ3PZOV8lRlTfvCW', 'user4@example.com', 'Emily', 'Brown', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'), -- password
   ('user5', '$2a$12$WYq.d5ylOCb8X27fECGOAe93AdcqkUFk36gS2MZ3PZOV8lRlTfvCW', 'user5@example.com', 'William', 'Taylor', ''); -- password
+  ('user6', '$2a$12$WYq.d5ylOCb8X27fECGOAe93AdcqkUFk36gS2MZ3PZOV8lRlTfvCW', 'user5@example.com', 'William', 'Taylor', ''); -- password
 
 INSERT INTO CONTENT (ID_user, description) VALUES
   (1, '## Title 1\n\nEste es un **texto resaltado**. Aquí tienes una tabla:\n\n| Encabezado 1 | Encabezado 2 |\n| ------------ | ------------ |\n| Valor 1      | Valor 2      |\n\nY aquí tienes un bloque de código:\n\n```javascript\nfunction saludar() {\n  console.log("¡Hola, mundo!");\n}\n```'),
