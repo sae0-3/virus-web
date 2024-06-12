@@ -1,0 +1,39 @@
+.container {
+  padding: 20px;
+}
+
+.notice-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.notice-item {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.notice-item h2 {
+  margin-bottom: 10px;
+}
+.search-container {
+  padding: 20px;
+  text-align: center; /* Para centrar el contenido */
+  /*background-color: white; /* Fondo blanco */
+  margin-bottom: 20px; /* Agregar espacio debajo */
+}
+  
+.search-input {
+  width: 80%; /* Ancho del campo de búsqueda */
+  max-width: 600px; /* Ancho máximo */
+  padding: 15px; /* Aumentar el padding */
+  border-radius: 8px; /* Borde redondeado */
+  border: 2px solid #ffffff; /* Borde gris */
+  background-color: white; /* Fondo blanco */
+  color: black; /* Color del texto negro */
+  font-size: 3em; /* Tamaño de fuente más grande */
+}
+
+  
+  
