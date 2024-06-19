@@ -10,10 +10,38 @@
 }
 h1 {
   color: #000000;
+  
+  margin-bottom: 10px;
 }
 
 .container {
   padding: 20px;
+}
+
+.button-fetch {
+  width: 50%;
+  display: block;
+  margin: 0 auto; /* Centra el botón horizontalmente */
+  margin-top: 40px;
+  margin-bottom: 5px;
+  
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px; /* Agregar tamaño de texto */
+  font-weight: bold; /* Agregar negrita */
+}
+
+.button-fetch:hover {
+  background-color: #45a049;; /* Cambia el color al pasar el mouse */
+}
+
+.button-fetch:active {
+  transform: scale(0.90); /* Efecto de escala al hacer clic */
+  background-color: #3e8e41;
 }
 
 #results {
@@ -50,9 +78,11 @@ h1 {
   background-color: white; /* Fondo blanco */
   color: black; /* Color del texto negro */
   font-size: 3em; /* Tamaño de fuente más grande */
+  position: relative; /* Posición relativa para el icono */
 }
 
-.button-search, .button-fetch {
+
+.button-search {
   margin-left: 10px;
   padding: 10px;
   background-color: #007bff;
@@ -69,15 +99,16 @@ h1 {
 }
 
 .button-search {
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M10 4C5.03 4 1 8.03 1 13s4.03 9 9 9c2.11 0 4.04-.73 5.58-1.95l6.39 6.39c.49.49 1.28.49 1.77 0 .49-.49.49-1.28 0-1.77L17.68 9.05c1.22-1.54 1.95-3.47 1.95-5.58C20.99 4.03 16.96 0 12 0zm0 2c3.31 0 6 2.69 6 6 0 .78-.15 1.52-.42 2.21l5.23 5.23-1.46 1.46-5.23-5.23C11.52 12.85 10.78 13 10 13c-3.31 0-6-2.69-6-6 0-3.31 2.69-6 6-6z" fill="%23FFFFFF"/></svg>'); /* Lupa como icono */
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1373/1373392.png'); /* Cambiar el icono por el enlace proporcionado */
   text-indent: -9999px; /* Oculta el texto del botón */
+  background-size: 30px 30px; /* Aumentar el tamaño del icono */
 }
 
-.button-search:hover, .button-fetch:hover {
+.button-search:hover {
   background-color: #0056b3; /* Cambia el color al pasar el mouse */
 }
 
-.button-search:active, .button-fetch:active {
+.button-search:active {
   transform: scale(0.90); /* Efecto de escala al hacer clic */
 }
 
@@ -99,8 +130,8 @@ h1 {
 }
 
 .loading {
-  font-size: 20px;
-  color: #007bff;
+  font-size: 30px;
+  color: #000000;
   font-weight: bold;
   margin-top: 20px;
   animation: blink 1s infinite; /* Añade una animación de parpadeo */
@@ -111,4 +142,3 @@ h1 {
   50% { opacity: 0; }
   100% { opacity: 1; }
 }  
-  

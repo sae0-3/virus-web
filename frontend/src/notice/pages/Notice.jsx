@@ -86,7 +86,7 @@ export const Notice = () => {  //aqui el error no es function es export
         onClick={handleFetchClick}
         disabled={loading}
       >
-        Recuperar JOB LIST
+        RECUPERAR JOB LIST
       </button>
       {loading && <div className="loading">Cargando...</div>}
       {fetchTriggered && !loading && (
@@ -115,7 +115,7 @@ export const Notice = () => {  //aqui el error no es function es export
                 onChange={handleUseLocationChange}
                 disabled={loading}
               />
-              Usar localización
+              Usar API de localización
             </label>
           </div>
         </>
