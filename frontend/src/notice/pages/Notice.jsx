@@ -1,57 +1,148 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Notice.css';
 
-export const Notice = () => {
-  const [notices, setNotices] = useState([]);
+export const Notice = () => {  //aqui el error no es function es export
+  const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredNotices, setFilteredNotices] = useState([]);
+  const [location, setLocation] = useState(null);
+  const [useLocation, setUseLocation] = useState(false);
+  const [fetchTriggered, setFetchTriggered] = useState(false);
+  const [loading, setLoading] = useState(false); // Estado para mostrar la animación de carga
+
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  const targetUrl = 'https://parsehub.com/api/v2/projects/tyqFQRnBW0by/last_ready_run/data?api_key=taEXja38WNOX';
+  const finalUrl = proxyUrl + targetUrl;
+
+  const geolocationApiUrl = `https://api.ipgeolocation.io/ipgeo?apiKey=95abb16c562f48228a6d1a54fcf8bb28`;
 
   useEffect(() => {
-    // Aquí podrías hacer una llamada a una API para obtener las noticias
-    const fetchNotices = async () => {
-      // Simulación de datos
-      const data = [
-        { id: 1, title: 'Noticia 1', content: 'Contenido de la noticia 1' },
-        { id: 2, title: 'Noticia 2', content: 'Contenido de la noticia 2' },
-      ];
-      setNotices(data);
-      setFilteredNotices(data); // Inicialmente, las noticias filtradas son todas las noticias
-    };
+    fetch(geolocationApiUrl)
+      .then(response => response.json())
+      .then(locationData => {
+        console.log(locationData);
+        setLocation(locationData);
+      })
+      .catch(error => {
+        console.error('Hubo un error al obtener la ubicación:', error);
+      });
+  }, [geolocationApiUrl]);
 
-    fetchNotices();
-  }, []);
-
-  useEffect(() => {
-    // Cuando cambie el término de búsqueda, filtramos las noticias
-    const filtered = notices.filter(notice =>
-      notice.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredNotices(filtered);
-  }, [searchTerm, notices]);
-
-  const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+  const fetchJobList = () => {
+    setLoading(true);
+    setTimeout(() => {
+      fetch(finalUrl)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setData(data.selection1);
+          setLoading(false);
+        })
+        .catch(error => {
+          console.error('Hubo un error al recuperar los datos:', error);
+          setLoading(false);
+        });
+    }, 3000);
   };
 
+  const handleSearchChange = event => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSearchClick = () => {
+    document.activeElement.blur();
+  };
+
+  const handleUseLocationChange = () => {
+    setLoading(true);
+    setUseLocation(!useLocation);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  };
+
+  const handleFetchClick = () => {
+    fetchJobList();
+    setFetchTriggered(true);
+  };
+
+  const filteredData = data.filter(item => {
+    const textContent = item.name.replace(/<[^>]*>/g, '').toLowerCase();
+    return textContent.includes(searchTerm.toLowerCase());
+  });
+
+  const locationFilteredData = filteredData.filter(item => {
+    if (useLocation && location) {
+      return item.Lugar.toLowerCase().includes(location.country_name.toLowerCase());
+    }
+    return true;
+  });
+
   return (
-    <div className='container'>
-      <div className='search-container'>
-        <input
-          type="text"
-          placeholder="Buscar noticias..."
-          className='search-input'
-          value={searchTerm}
-          onChange={handleSearch}
-        />
+    <div className="Notice">
+      <h1>Resultados de la API</h1>
+      <button
+        type="button"
+        className="button-fetch"
+        onClick={handleFetchClick}
+        disabled={loading}
+      >
+        Recuperar JOB LIST
+      </button>
+      {loading && <div className="loading">Cargando...</div>}
+      {fetchTriggered && !loading && (
+        <>
+          <div className="search-container">
+            <input
+              type="text"
+              placeholder="Buscar en todos los campos..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+              className="search-input"
+            />
+            <button
+              type="button"
+              className="button-search"
+              onClick={handleSearchClick}
+            >
+              <i className="fas fa-search"></i>
+            </button>
+          </div>
+          <div className="location-switch">
+            <label>
+              <input
+                type="checkbox"
+                checked={useLocation}
+                onChange={handleUseLocationChange}
+                disabled={loading}
+              />
+              Usar localización
+            </label>
+          </div>
+        </>
+      )}
+      <div id="results">
+        {locationFilteredData.length > 0 ? (
+          locationFilteredData.map((item, index) => {
+            const title = item.name.replace(/<[^>]*>/g, '').split('\n')[1];
+            const published = item.name.match(/Published[^<]*/)[0];
+
+            return (
+              <div key={index} className="result-item">
+                <p><strong>Nombre:</strong> {title}</p>
+                <p><strong>Posición:</strong> {item.Posicion}</p>
+                <p><strong>Lugar:</strong> {item.Lugar}</p>
+                <p><strong>Publicado:</strong> {published}</p>
+                <p><strong>URL:</strong> <a href={item.url} target="_blank" rel="noopener noreferrer">Ver más</a></p>
+              </div>
+            );
+          })
+        ) : (
+          <p>No se encontraron resultados.</p>
+        )}
       </div>
-      <ul className='notice-list'>
-        {filteredNotices.map((notice) => (
-          <li key={notice.id} className='notice-item'>
-            <h2>{notice.title}</h2>
-            <p>{notice.content}</p>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
+
+//export default Notice; // Asegúrate de exportar el componente Notice
+

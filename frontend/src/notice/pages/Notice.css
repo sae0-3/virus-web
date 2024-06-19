@@ -1,3 +1,14 @@
+.Notice {
+  /*font-family: 'Roboto', Arial, sans-serif;*/
+  margin: 20px auto; /* Centra el contenido horizontalmente */
+  text-align: center;
+  background-color: rgb(187, 187, 187);
+  color: black;
+  min-height: 100vh;
+  padding: 20px; /* Añade un padding alrededor del contenido */
+  box-sizing: border-box;
+}
+
 .container {
   padding: 20px;
 }
