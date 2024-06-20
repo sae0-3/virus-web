@@ -14,7 +14,7 @@ export const Notice = () => {
   const targetUrl = 'https://parsehub.com/api/v2/projects/tyqFQRnBW0by/last_ready_run/data?api_key=taEXja38WNOX';
   const finalUrl = proxyUrl + targetUrl;
 
-  const geolocationApiUrl = `https://api.ipgeolocation.io/ipgeo?apiKey=95abb16c562f48228a6d1a54fcf8bb28`;
+  const geolocationApiUrl = `https://api.ipgeolocation.io/ipgeo?apiKey=95abb16c562f48228a6d1a54fcf8bb28`; //api temporal para probar el proyecto, es publica y no representa una brecha de seguridad o un peligro.
 
   useEffect(() => {
     fetch(geolocationApiUrl)
