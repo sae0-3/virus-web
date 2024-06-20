@@ -2,7 +2,7 @@ import { useUser } from '@auth/hooks'
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './styles/Header.css'
-
+import logoUmss from '../../../public/logo_umss.svg';
 
 export const Header = () => {
   const [{ id, isAuthenticated }, setUser] = useUser()
@@ -17,10 +17,10 @@ export const Header = () => {
   return (
     <>
       <header className='header-main'>
-        <nav className='container'>
-          <Link to='/'
-            className='navbar-brand flex-grow-1'
-          >Sansi Web</Link>
+      <nav className='container'>
+        <Link to='/' className='navbar-brand flex-grow-1'>
+          <img src={logoUmss} alt="Logo UMSS" className="logo" /> Sansi Web
+        </Link>
           <button
             type='button'
             className='nav-link'

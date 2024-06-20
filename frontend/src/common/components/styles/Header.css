@@ -73,3 +73,14 @@
     color: #fff;
   }
 }
+
+.logo-container {
+  text-align: center; /* Alineación centrada del logo */
+  margin-bottom: 20px; /* Espacio inferior */
+}
+
+.logo {
+  width: 10%; /* Ancho del logo */
+  height: auto; /* Altura automática para mantener la proporción */
+  background-color: #fff;
+}

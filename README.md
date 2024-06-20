@@ -6,6 +6,7 @@
 ## TABLA DE CONTENIDO
 * [DESCRIPCION](#descripcion)
   * [Foro Principal](#foro-principal)
+  * [Anuncios](#anuncios)
   * [Chats](#chats)
 * [HACER CORRER](#hacer-correr)
   * [Requisitos](#requisitos)
@@ -34,6 +35,11 @@ Esta seccion va dirigido a la publicacion de hilos/posts de conversacion sobre t
 Estos hilos podran estar en dos estados, activo o cerrado, si esta cerrado nadie mas podra comentar hasta que no se vuelva a abrir.
 
 Por otra parte podran remarcarse (agregar algun tipo de distintivo) aquellas respuestas que agreguen mas valos a los posts.
+
+<a name="anuncios"></a>
+### Anuncios
+
+
 
 <a name="chats"></a>
 ### Chats
