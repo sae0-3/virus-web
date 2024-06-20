@@ -10,9 +10,23 @@ export const Notice = () => {
   const [loading, setLoading] = useState(false);
   const [updateMessage, setUpdateMessage] = useState('');
 
-  
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  const targetUrl = 'https://parsehub.com/api/v2/projects/tyqFQRnBW0by/last_ready_run/data?api_key=taEXja38WNOX';
+  const finalUrl = proxyUrl + targetUrl;
 
+  const geolocationApiUrl = `https://api.ipgeolocation.io/ipgeo?apiKey=95abb16c562f48228a6d1a54fcf8bb28`;
 
+  useEffect(() => {
+    fetch(geolocationApiUrl)
+      .then(response => response.json())
+      .then(locationData => {
+        console.log(locationData);
+        setLocation(locationData);
+      })
+      .catch(error => {
+        console.error('Hubo un error al obtener la ubicación:', error);
+      });
+  }, [geolocationApiUrl]);
 
   const fetchJobList = () => {
     setLoading(true);
