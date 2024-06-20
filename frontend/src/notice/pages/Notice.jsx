@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './Notice.css';
 
-export const Notice = () => {  //aqui el error no es function es export
+export const Notice = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [location, setLocation] = useState(null);
   const [useLocation, setUseLocation] = useState(false);
   const [fetchTriggered, setFetchTriggered] = useState(false);
-  const [loading, setLoading] = useState(false); // Estado para mostrar la animación de carga
+  const [loading, setLoading] = useState(false);
+  const [updateMessage, setUpdateMessage] = useState('');
 
   const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   const targetUrl = 'https://parsehub.com/api/v2/projects/tyqFQRnBW0by/last_ready_run/data?api_key=taEXja38WNOX';
@@ -29,19 +30,19 @@ export const Notice = () => {  //aqui el error no es function es export
 
   const fetchJobList = () => {
     setLoading(true);
-    setTimeout(() => {
-      fetch(finalUrl)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          setData(data.selection1);
-          setLoading(false);
-        })
-        .catch(error => {
-          console.error('Hubo un error al recuperar los datos:', error);
-          setLoading(false);
-        });
-    }, 3000);
+    fetch(finalUrl)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setData(data.selection1);
+        setLoading(false);
+        setFetchTriggered(true);
+        setUpdateMessage(`Lista actualizada: ${new Date().toLocaleDateString()}`);
+      })
+      .catch(error => {
+        console.error('Hubo un error al recuperar los datos:', error);
+        setLoading(false);
+      });
   };
 
   const handleSearchChange = event => {
@@ -60,10 +61,11 @@ export const Notice = () => {  //aqui el error no es function es export
     }, 3000);
   };
 
-  const handleFetchClick = () => {
-    fetchJobList();
-    setFetchTriggered(true);
-  };
+  useEffect(() => {
+    if (fetchTriggered && !loading) {
+      setUpdateMessage(`Lista actualizada: ${new Date().toLocaleDateString()}`);
+    }
+  }, [fetchTriggered, loading]);
 
   const filteredData = data.filter(item => {
     const textContent = item.name.replace(/<[^>]*>/g, '').toLowerCase();
@@ -83,7 +85,7 @@ export const Notice = () => {  //aqui el error no es function es export
       <button
         type="button"
         className="button-fetch"
-        onClick={handleFetchClick}
+        onClick={fetchJobList}
         disabled={loading}
       >
         RECUPERAR JOB LIST
@@ -118,6 +120,13 @@ export const Notice = () => {  //aqui el error no es function es export
               Usar API de localización
             </label>
           </div>
+          <div className="update-message">
+            {updateMessage && (
+              <>
+                <strong>{updateMessage}</strong>
+              </>
+            )}
+          </div>
         </>
       )}
       <div id="results">
@@ -143,6 +152,3 @@ export const Notice = () => {  //aqui el error no es function es export
     </div>
   );
 }
-
-//export default Notice; // Asegúrate de exportar el componente Notice
-

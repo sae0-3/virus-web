@@ -23,7 +23,7 @@ body .Notice h1 {
   display: block;
   margin: 0 auto; /* Centra el botón horizontalmente */
   margin-top: 40px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   background-image: linear-gradient(to right, #28a745, #5cbe57);
   padding: 10px 20px;
   /* background-color: #4CAF50; */
@@ -48,6 +48,9 @@ body .Notice h1 {
 #results {
   margin-top: 0px;
   padding: 40px; /* Añade un padding dentro del contenedor de resultados */
+  width: 90%;
+  margin: 0 auto; /* Centra el contenedor horizontalmente */
+  text-align: center; /* Centra el contenido de los resultados */
 }
 
 .result-item {
@@ -57,7 +60,7 @@ body .Notice h1 {
   border-radius: 5px;
   background-color: #f9f9f9;
   text-align: left;
-  font-size: 20px; 
+  font-size: 25px; 
 }
 
 .result-item p {
@@ -72,8 +75,8 @@ body .Notice h1 {
 }
   
 .search-input {
-  width: 80%; /* Ancho del campo de búsqueda */
-  max-width: 600px; /* Ancho máximo */
+  width: 70%; /* Ancho del campo de búsqueda */
+  max-width: 500px; /* Ancho máximo */
   padding: 15px; /* Aumentar el padding */
   border-top-left-radius: 8px; /* Redondear solo el borde superior izquierdo */
   border-bottom-left-radius: 8px; 
@@ -122,6 +125,7 @@ body .Notice h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
   margin-bottom: 20px;
 }
 
@@ -153,3 +157,16 @@ body .Notice h1 {
   50% { opacity: 0; }
   100% { opacity: 1; }
 }  
+
+.update-message {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 10px;
+  border: 2px solid #4CAF50; /* Borde verde */
+  background-color: #E8F5E9; /* Fondo verde claro */
+  color: #388E3C; /* Texto verde oscuro */
+  font-weight: bold;
+  border-radius: 4px;
+  font-size: 20px;
+}
