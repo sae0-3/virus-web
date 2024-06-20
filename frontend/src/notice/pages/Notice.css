@@ -122,6 +122,8 @@ body .Notice h1 {
 }
 
 .location-switch {
+  max-width: 250px;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,7 +139,7 @@ body .Notice h1 {
 }
 
 .location-switch input {
-  margin-right: 10px;
+  margin-right: 15px;
   transform: scale(2);
   background-color: white; /* Fondo blanco */
   border: 2px solid black; /* Borde negro */

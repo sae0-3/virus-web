@@ -44,7 +44,7 @@ export const Notice = () => {
           console.error('Hubo un error al recuperar los datos:', error);
           setLoading(false);
         });
-    }, 3000); // Agregamos un retraso de 3 segundos para simular carga
+    }, 3000); // Agregamos un retraso de 3 segundos para que los datos se carguen correctamente
   };
 
   const handleSearchChange = event => {
@@ -119,7 +119,9 @@ export const Notice = () => {
                 onChange={handleUseLocationChange}
                 disabled={loading}
               />
-              Usar API de localización
+              Usar API de Geolocalización:
+              Detecta automaticamente tu ubicacion
+              para mostrarte resultados relacionados.
             </label>
           </div>
           <div className="update-message">
