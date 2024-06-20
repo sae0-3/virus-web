@@ -30,19 +30,21 @@ export const Notice = () => {
 
   const fetchJobList = () => {
     setLoading(true);
-    fetch(finalUrl)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setData(data.selection1);
-        setLoading(false);
-        setFetchTriggered(true);
-        setUpdateMessage(`Lista actualizada: ${new Date().toLocaleDateString()}`);
-      })
-      .catch(error => {
-        console.error('Hubo un error al recuperar los datos:', error);
-        setLoading(false);
-      });
+    setTimeout(() => {
+      fetch(finalUrl)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setData(data.selection1);
+          setLoading(false);
+          setFetchTriggered(true);
+          setUpdateMessage(`Lista actualizada ${new Date().toLocaleDateString()}`);
+        })
+        .catch(error => {
+          console.error('Hubo un error al recuperar los datos:', error);
+          setLoading(false);
+        });
+    }, 3000); // Agregamos un retraso de 3 segundos para simular carga
   };
 
   const handleSearchChange = event => {
@@ -63,7 +65,7 @@ export const Notice = () => {
 
   useEffect(() => {
     if (fetchTriggered && !loading) {
-      setUpdateMessage(`Lista actualizada: ${new Date().toLocaleDateString()}`);
+      setUpdateMessage(`Lista actualizada ${new Date().toLocaleDateString()}`);
     }
   }, [fetchTriggered, loading]);
 
@@ -152,3 +154,4 @@ export const Notice = () => {
     </div>
   );
 }
+
