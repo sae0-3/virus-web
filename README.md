@@ -4,7 +4,8 @@
 
 ****
 ## TABLA DE CONTENIDO
-* [DESCRIPCION](#descripcion)
+* [ACTUALIZACION](#actualizacion)
+  * [Descripcion](#descripcion)
   * [Foro Principal](#foro-principal)
   * [Anuncios](#anuncios)
   * [Chats](#chats)
@@ -16,10 +17,14 @@
 
 
 ****
-<a name="descripcion"></a>
-## DESCRIPCION
+<a name="actualizacion"></a>
+## ACTUALIZACION
 
-El sistema consiste en un foro/red social para preguntas referentes a ayudas academicas u otros temas relacionados a la universidad.
+
+<a name="descripcion"></a>
+### Descripcion
+
+~~El sistema consiste en un foro/red social para preguntas referentes a ayudas academicas u otros temas relacionados a la universidad.~~
 
 Al sistema podran registrase con el codigo sis y el proceso sera el siguiente:
 
