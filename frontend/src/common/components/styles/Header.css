@@ -1,6 +1,6 @@
 .header-main {
   align-items: center;
-  background-color: var(--black);
+  background-image: linear-gradient(to right, #e00d0d, #174db1);
   color: var(--white);
   display: flex;
   height: 12vh;
@@ -80,7 +80,7 @@
 }
 
 .logo {
-  width: 10%; /* Ancho del logo */
+  width: 7%; /* Ancho del logo */
   height: auto; /* Altura automática para mantener la proporción */
   background-color: #fff;
 }
