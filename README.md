@@ -3,7 +3,7 @@
 
 ****
 ## TABLA DE CONTENIDO
-* [ACTUALIZACIÓN FINAL!](#actualizacion)
+* [ACTUALIZACIÓN FINAL](#actualizacion)
   * [Descripcion](#descripcion)
   * [Foro Principal](#foro-principal)
   * [Anuncios](#anuncios)
@@ -17,11 +17,11 @@
 
 ****
 <a name="actualizacion"></a>
-## ACTUALIZACIÓN FINAL!
+## ACTUALIZACIÓN FINAL
 
 Debido a la retroalimentación recibida durante las revisiones hemos cambiado un poco el enfoque del proyecto, antes era una pagina que tenia el objetivo de servir como apoyo a los estudiantes y sus materias, haciendo el uso del foro, seccion de anuncios de ayudantia y chat personalizado.
 
-Ahora el sistema consiste en ayudar a los estudiantes a encontrar trabajo mediante la aplicacion de una API de construccion propia, que extrae informacion de las principales empresas informaticas del pais, como por ejemplo: Jalasoft, UnoSquere, Digital Harbor, etc. y las presenta en una lista para ser consultada por los estudiantes de la UMSS, ademas se usa una API de geolocalizacion para entregar mejores resultados de acuerdo a la ubicacion del estudiante. 
+**Ahora el sistema consiste en ayudar a los estudiantes a encontrar trabajo mediante la aplicación de una API de construcción propia, que extrae información de las principales empresas informáticas del país, como por ejemplo: Jalasoft, UnoSquere, Digital Harbor, etc., y las presenta en una lista para ser consultada por los estudiantes de la UMSS. Además, se usa una API de geolocalización para entregar mejores resultados de acuerdo a la ubicación del estudiante.**
 
 <a name="descripcion"></a>
 ### Caracteristicas del sistema
@@ -36,7 +36,7 @@ Ahora el sistema consiste en ayudar a los estudiantes a encontrar trabajo median
 - Uso de proxys y reverse proxys para la resolucion de problemas de conexión
 - Pagina responsive lista para dispositivos moviles y otros.
 
-Tecnologias usadas:
+**Tecnologias usadas:**
 - Frontend: React, Vite, Material-UI, Axios
 - Backend: Node.js, Express.js, JWT
 - Base de Datos: MySQL
@@ -67,6 +67,13 @@ Por otra parte podran remarcarse (agregar algun tipo de distintivo) aquellas res
 
 En esta seccion se mostraran los puestos de trabajo disponibles en las empresas de la ciudad, con la posibilidad de filtrar por empresa y ubicacion.
 
+Esta seccion hace un request a una API que extrae los datos necesarios para armar una lista de empleos, disponibles en las paginas web de las principales empresas de tecnologia del Pais, y se filtran solo los datos que se requieren (Mejorable).
+
+Para mejorar los resultados de busqueda se usa otra API de geolocalizacion por ip lo que proporciona un filtro mas para los resultados del usuario.
+
+Ademas contiene un buscador que buscara cualquiere coincidencia mostrando todos los resultados mientras se escriben las palabras.
+
+Nota: La informacion de los puestos de trabajo se actualiza diariamente y una vez al dia para su recuperacion.
 
 <a name="chats"></a>
 ### Chats
