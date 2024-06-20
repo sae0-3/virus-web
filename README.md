@@ -1,6 +1,8 @@
 # PLATAFORMA DE DEBATE/AYUDA ESTUDIANTIL `SANSI-WEB`
 ### GRUPO: VIRUS
 
+https://github.com/sae0-3/virus-web/assets/82067924/88d4f264-ca5f-43f2-84b0-1339a338dda9
+
 ****
 ## TABLA DE CONTENIDO
 * [ACTUALIZACIÓN FINAL](#actualizacion)
