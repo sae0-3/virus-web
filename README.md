@@ -4,7 +4,7 @@
 
 ****
 ## TABLA DE CONTENIDO
-* [ACTUALIZACION](#actualizacion)
+* [ACTUALIZACIÓN FINAL!](#actualizacion)
   * [Descripcion](#descripcion)
   * [Foro Principal](#foro-principal)
   * [Anuncios](#anuncios)
@@ -18,7 +18,17 @@
 
 ****
 <a name="actualizacion"></a>
-## ACTUALIZACION
+## ACTUALIZACIÓN FINAL!
+
+Debido a la retroalimentación recibida durante las revisiones hemos cambiado un poco el enfoque del proyecto, antes era una pagina que tenia el objetivo de servir como apoyo a los estudiantes y sus materias, haciendo el uso del foro, seccion de anuncios de ayudantia y chat personalizado.
+
+Ahora el sistema consiste en ayudar a los estudiantes a encontrar trabajo mediante la aplicacion de una API de construccion propia, que extrae informacion de las principales empresas informaticas del pais, como por ejemplo: Jalasoft, UnoSquere, Digital Harbor, etc. y las presenta en una lista para ser consultada por los estudiantes de la UMSS, ademas se usa una API de geolocalizacion para entregar mejores resultados de acuerdo a la ubicacion del estudiante. 
+
+<a name="descripcion"></a>
+### Caracteristicas del sistema
+
+- 
+
 
 
 <a name="descripcion"></a>
