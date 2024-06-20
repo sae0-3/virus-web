@@ -49,6 +49,8 @@ Debido a la retroalimentación recibida durante las revisiones hemos cambiado un
 
 ~~El sistema consiste en un foro/red social para preguntas referentes a ayudas academicas u otros temas relacionados a la universidad.~~
 
+
+
 Al sistema podran registrase con el codigo sis y el proceso sera el siguiente:
 
 - El nuevo usuario introduce su codigo sis
