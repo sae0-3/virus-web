@@ -10,9 +10,9 @@ export const Notice = () => {
   const [loading, setLoading] = useState(false);
   const [updateMessage, setUpdateMessage] = useState('');
 
-  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-  const targetUrl = 'https://parsehub.com/api/v2/projects/tyqFQRnBW0by/last_ready_run/data?api_key=taEXja38WNOX';
-  const finalUrl = proxyUrl + targetUrl;
+  // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  const targetUrl = 'http://localhost:8080/api/notice';
+  // const finalUrl = proxyUrl + targetUrl;
 
   const geolocationApiUrl = `https://api.ipgeolocation.io/ipgeo?apiKey=95abb16c562f48228a6d1a54fcf8bb28`; //api temporal para probar el proyecto, es publica y no representa una brecha de seguridad o un peligro.
 
@@ -31,7 +31,7 @@ export const Notice = () => {
   const fetchJobList = () => {
     setLoading(true);
     setTimeout(() => {
-      fetch(finalUrl)
+      fetch(targetUrl)
         .then(response => response.json())
         .then(data => {
           console.log(data);
