@@ -8,9 +8,9 @@
   padding: 20px; /* Añade un padding alrededor del contenido */
   box-sizing: border-box;
 }
-h1 {
+body .Notice h1 {
   color: #000000;
-  
+  font-size: 36px;
   margin-bottom: 10px;
 }
 
@@ -19,14 +19,14 @@ h1 {
 }
 
 .button-fetch {
-  width: 50%;
+  width: 30%;
   display: block;
   margin: 0 auto; /* Centra el botón horizontalmente */
   margin-top: 40px;
   margin-bottom: 5px;
-  
+  background-image: linear-gradient(to right, #28a745, #5cbe57);
   padding: 10px 20px;
-  background-color: #4CAF50;
+  /* background-color: #4CAF50; */
   color: rgb(255, 255, 255);
   border: none;
   border-radius: 5px;
@@ -36,7 +36,8 @@ h1 {
 }
 
 .button-fetch:hover {
-  background-color: #45a049;; /* Cambia el color al pasar el mouse */
+  /*background-color: #45a049;; /* Cambia el color al pasar el mouse */
+  background-image: linear-gradient(to right, #206b34, #337430);
 }
 
 .button-fetch:active {
@@ -73,7 +74,8 @@ h1 {
   width: 80%; /* Ancho del campo de búsqueda */
   max-width: 600px; /* Ancho máximo */
   padding: 15px; /* Aumentar el padding */
-  border-radius: 8px; /* Borde redondeado */
+  border-top-left-radius: 8px; /* Redondear solo el borde superior izquierdo */
+  border-bottom-left-radius: 8px; 
   border: 2px solid #ffffff; /* Borde gris */
   background-color: white; /* Fondo blanco */
   color: black; /* Color del texto negro */
@@ -83,25 +85,28 @@ h1 {
 
 
 .button-search {
-  margin-left: 10px;
-  padding: 10px;
+  margin-left: 2px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  padding: 28px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-top-right-radius: 8px; /* Redondear solo el borde superior izquierdo */
+  border-bottom-right-radius: 8px; 
   cursor: pointer;
   transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
-  background-size: 20px 20px; /* Tamaño del icono */
+  background-size: 40px 40px; /* Tamaño del icono */
   background-repeat: no-repeat; /* Evita la repetición del icono */
   background-position: center; /* Centra el icono */
-  width: 100px; /* Ajusta el ancho del botón */
-  height: 40px; /* Ajusta la altura del botón */
+  width: 80px; /* Ajusta el ancho del botón */
+  height: 79.4px; /* Ajusta la altura del botón */
 }
 
 .button-search {
   background-image: url('https://cdn-icons-png.flaticon.com/512/1373/1373392.png'); /* Cambiar el icono por el enlace proporcionado */
   text-indent: -9999px; /* Oculta el texto del botón */
-  background-size: 30px 30px; /* Aumentar el tamaño del icono */
+  /*background-size: 30px 30px; /* Aumentar el tamaño del icono */
 }
 
 .button-search:hover {
@@ -123,10 +128,12 @@ h1 {
   display: flex;
   align-items: center;
   font-size: 16px;
+  font-weight: bold;
 }
 
 .location-switch input {
   margin-right: 10px;
+  transform: scale(2);
 }
 
 .loading {
