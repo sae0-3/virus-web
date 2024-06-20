@@ -1,7 +1,6 @@
 # PLATAFORMA DE DEBATE/AYUDA ESTUDIANTIL `SANSI-WEB`
 ### GRUPO: VIRUS
 
-
 ****
 ## TABLA DE CONTENIDO
 * [ACTUALIZACIÓN FINAL!](#actualizacion)
@@ -27,9 +26,21 @@ Ahora el sistema consiste en ayudar a los estudiantes a encontrar trabajo median
 <a name="descripcion"></a>
 ### Caracteristicas del sistema
 
-- 
+- Seccion de anuncios, muestra open positions de las principales empresas del pais(escalable)
+- Sección de Foro, para compartir experiencias sobre encontrar trabajo.
+- Chat directo entre estudiantes sirve para crear contactos fuera de la Universidad
+- Uso de APIs propias y externas para la recuperacion de datos
+- Sistema de loguin que verifica estudiantes de la UMSS (Sistema de autentificación)
+- Backend SQL para el sistema de loguin y mensajeria.
+- Proyecto Dockerizado listo para el Deploy en la nube (incluye las dependencias necesarias)
+- Uso de proxys y reverse proxys para la resolucion de problemas de conexión
+- Pagina responsive lista para dispositivos moviles y otros.
 
-
+Tecnologias usadas:
+- Frontend: React, Vite, Material-UI, Axios
+- Backend: Node.js, Express.js, JWT
+- Base de Datos: MySQL
+- Docker, WSL
 
 <a name="descripcion"></a>
 ### Descripcion
@@ -54,6 +65,7 @@ Por otra parte podran remarcarse (agregar algun tipo de distintivo) aquellas res
 <a name="anuncios"></a>
 ### Anuncios
 
+En esta seccion se mostraran los puestos de trabajo disponibles en las empresas de la ciudad, con la posibilidad de filtrar por empresa y ubicacion.
 
 
 <a name="chats"></a>
