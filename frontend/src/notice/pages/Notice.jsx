@@ -73,14 +73,14 @@ export const Notice = () => {
     const textContent = item.name.replace(/<[^>]*>/g, '').toLowerCase();
     return textContent.includes(searchTerm.toLowerCase());
   });
-
+   //Aqui se filtrara por la API de geolocalizacion
   const locationFilteredData = filteredData.filter(item => {
     if (useLocation && location) {
-      return item.Lugar.toLowerCase().includes(location.country_name.toLowerCase());
+      return item.Lugar.toLowerCase().includes(location.country_name.toLowerCase()) || item.Lugar.toLowerCase() === 'all';
     }
     return true;
   });
-
+  //Aqui se filtran los resultados de la API de extraccion de trabajos
   return (
     <div className="Notice">
       <h1>Resultados de la API</h1>
@@ -132,7 +132,7 @@ export const Notice = () => {
             )}
           </div>
         </>
-      )}
+      )}  
       <div id="results">
         {locationFilteredData.length > 0 ? (
           locationFilteredData.map((item, index) => {
