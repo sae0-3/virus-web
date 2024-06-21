@@ -2,7 +2,8 @@ import { useUser } from '@auth/hooks'
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './styles/Header.css'
-import logoUmss from '../../../public/logo_umss.svg';
+//import logoUmss from '../../../public/logo_umss.svg';
+import logoUmss from '/logo_umss.svg';
 
 export const Header = () => {
   const [{ id, isAuthenticated }, setUser] = useUser()
