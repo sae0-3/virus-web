@@ -120,8 +120,8 @@ export const Notice = () => {
                 disabled={loading}
               />
               Usar API de Geolocalización:
-              Detecta automaticamente tu ubicacion
-              para mostrarte resultados relacionados.
+              Detecta automaticamente tu ubicación
+              para mostrarte resultados de tu región.
             </label>
           </div>
           <div className="update-message">
