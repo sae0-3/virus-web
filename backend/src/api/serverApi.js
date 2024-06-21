@@ -20,7 +20,7 @@ class ServerApi extends Server {
     this.app.use('/api/comments', commentRouter)
     this.app.use('/api/saved', validate, saveRouter)
     this.app.use('/api/interested', validate, interesteRouter)
-
+    //API de extraccion de datos de parsehub
     this.app.use('/api/notice', async (req, res) => {
       const URL = 'https://parsehub.com/api/v2/projects/tyqFQRnBW0by/last_ready_run/data?api_key=taEXja38WNOX'
 

@@ -9,7 +9,7 @@ export const Notice = () => {
   const [fetchTriggered, setFetchTriggered] = useState(false);
   const [loading, setLoading] = useState(false);
   const [updateMessage, setUpdateMessage] = useState('');
-
+  // API 1 Y API 2 EN ESTA SECCION middleware en \backend\src\api
   // const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   const targetUrl = 'http://localhost:8080/api/notice';
   // const finalUrl = proxyUrl + targetUrl;
@@ -60,7 +60,7 @@ export const Notice = () => {
     setUseLocation(!useLocation);
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
   };
 
   useEffect(() => {
