@@ -136,14 +136,38 @@ export const Notice = () => {
       <div id="results">
         {locationFilteredData.length > 0 ? (
           locationFilteredData.map((item, index) => {
-            const title = item.name.replace(/<[^>]*>/g, '').split('\n')[1];
-            const published = item.name.match(/Published[^<]*/)[0];
+            // Eliminar etiquetas HTML si existen y dividir por saltos de línea
+            const cleanName = item.name.replace(/<[^>]*>/g, '');
+            const nameParts = cleanName.split('\n').map(part => part.trim()).filter(part => part);
+
+            // Inicializar variables
+            let title = '';
+            let position = '';
+            let location = '';
+            let published = '';
+
+            // Asignar valores basados en las partes disponibles
+            if (nameParts.length > 0) {
+              title = nameParts[0];
+            }
+
+            if (nameParts.length > 1) {
+              position = nameParts[1];
+            }
+
+            if (nameParts.length > 2) {
+              location = nameParts[2];
+            }
+
+            // Buscar la fecha de publicación
+            const publishedMatch = cleanName.match(/Published\s*\d+\s*days\s*ago/);
+            published = publishedMatch ? publishedMatch[0] : 'Fecha no disponible';
 
             return (
               <div key={index} className="result-item">
                 <p><strong>Nombre:</strong> {title}</p>
-                <p><strong>Posición:</strong> {item.Posicion}</p>
-                <p><strong>Lugar:</strong> {item.Lugar}</p>
+                <p><strong>Posición:</strong> {position}</p>
+                <p><strong>Lugar:</strong> {location}</p>
                 <p><strong>Publicado:</strong> {published}</p>
                 <p><strong>URL:</strong> <a href={item.url} target="_blank" rel="noopener noreferrer">Ver más</a></p>
               </div>
