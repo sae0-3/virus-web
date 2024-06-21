@@ -12,8 +12,6 @@ https://github.com/sae0-3/virus-web/assets/82067924/88d4f264-ca5f-43f2-84b0-1339
   * [Chats](#chats)
 * [HACER CORRER](#hacer-correr)
   * [Requisitos](#requisitos)
-  * [Desarrollo](#desarrollo)
-  * [Produccion](#produccion)
 * [RECURSOS](#recursos)
 
 
@@ -93,78 +91,17 @@ No existira grupos, solo chats privados.
 ### Requisitos
   * Tener docker instalado (para windows [wsl2](https://learn.microsoft.com/es-es/windows/wsl/install))
 
-<a name="desarrollo"></a>
-### Desarrollo
-1. Clonar el repositorio
-```hs
-git clone git@github.com:sae0-3/virus-web.git
-```
-
-2. Entrar al proyecto
-```hs
-cd virus-web/
-ls -l
-```
-
-3. Construir el contenedor
-```hs
-docker compose -f docker-compose-dev.yml up -d
-```
-
-4. Subir la base datos /backend/structure.sql (phpmyadmin activado en el puerto 80: `http://localhost`)
-
-5. Identificar el id que se proporciono a los contenedores de node (`virus-web-nodejs-frontend-1` y `virus-web-nodejs-backend-1`)
-```hs
-docker container ls
-```
-
-6. Ingresar a la terminal interactiva de `virus-web-nodejs-backend-1`
-```hs
-docker exec -it <id_container> sh
-```
-
-7. Instalar pnpm (opcional)
-```hs
-npm install -g pnpm
-```
-
-8. Instalar los paquetes de desarrollo (de no haber instalado pnpm se usa npm)
-```hs
-pnpm install
-```
-
-9. Hacer correr el servidor de desarrollo
-```hs
-npm run dev
-```
-
-10. Abrir otra terminal
-
-11. Volver al paso 3 y ahora hacerlo para `virus-web-nodejs-frontend-1`
-
-12. Eliminar los contenedores
-```hs
-docker compose -f docker-compose-dev.yml down
-```
-
-****
-![](docs/1.png)
-****
-![](docs/2.png)
-****
-![](docs/3.png)
-****
-![](docs/4.png)
-![](docs/5.png)
-****
-
-<a name="produccion"></a>
-### Produccion
 Ejecutar:
 
 ```hs
 docker compose up -d
 ```
+
+#### CREDENCIALES
+Para ingresar al sistema se puede hacer mediante los usuarios:
+
+* user1, user2, user3, user4, user5, todos con la contraseña como `password`
+
 
 ****
 <a name="recursos"></a>
